@@ -56,17 +56,9 @@ export class LoginFormComponent implements OnInit {
         this.authenticating = false;
 
         if (error.status === 400) {
-          const headerKeys = error.headers.keys();
-          console.log('Encabezados disponibles:', headerKeys);
-          if (error.headers.has('x-change-password-token')) {
-            const token = error.headers.get('x-change-password-token');
-            console.log(token);
-          }
-          const token = error.headers.get('X-Change-Password-Token');
-          console.log(token);
-          if (error.error.errors.first_login && token) {
-            console.log('Token para cambiar contraseña:', token);
-            // Ejemplo: Redirigir a página de cambio de contraseña
+          // Ejemplo: Redirigir a página de cambio de contraseña
+          if (error.error.errors.first_login) {
+            const token = error.headers.get('X-Change-Password-Token');
             this.router.navigate(['/change-password', token]).then();
           } else {
             this.notification.verification(error);

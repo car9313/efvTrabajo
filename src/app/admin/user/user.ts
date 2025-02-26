@@ -8,6 +8,7 @@ export class User {
     public role_ids: number[] = [],
     public roles: Role[] = [],
     public password: string = '',
-    public password_confirmation: string = ''
+    public password_confirmation: string = '',
+    public user_type: number = null
   ) {}
 }

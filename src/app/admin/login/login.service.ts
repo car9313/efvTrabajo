@@ -6,12 +6,26 @@ import {
 } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { UserLogin } from './login';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { ConfigService } from '@app/nodachi/services/config.services';
 import { UserService } from '../user/user.service';
 import { catchError, finalize, map, switchMap } from 'rxjs/operators';
 import { SignalRService } from '@app/nodachi/services/signal-r.service';
 import { TokenStorageService } from './token-storage.service';
+import { User } from '../user/user';
+
+interface AuthResponseBody {
+  access_token: string;
+  token_type: string;
+  expires_in: string;
+  refresh_token: string;
+  client_id: string;
+  userName: string;
+  issued: string;
+  expires: string;
+}
+
+type AuthHttpResponse = HttpResponse<AuthResponseBody>;
 
 @Injectable()
 export class LoginService {
@@ -33,26 +47,26 @@ export class LoginService {
     this.refreshUrl =
       this.config.url() + this.config.getConst('refreshTokenURL');
   }
-  login(user: UserLogin): Observable<any> {
+  login(user: UserLogin): Observable<boolean> {
     const httpParams = this.getHttpParamsLogin(user);
     return this.http
-      .post(this.url, httpParams, {
+      .post<AuthResponseBody>(this.url, httpParams, {
         headers: { 'Content-Type': 'application/json' },
         responseType: 'json',
         observe: 'response',
       })
       .pipe(
-        map((res: any) => {
+        map((res: AuthHttpResponse) => {
           if (res.body) {
             this.tokenStorageService.setLocalStorage(res.body);
             return true;
           }
           return false;
         }),
-        switchMap((login) => {
+        switchMap((login: boolean) => {
           if (login) {
             return this.userService.currentUser().pipe(
-              map((resp) => {
+              map((resp: User) => {
                 if (resp.roles) {
                   this.userService.setPerms(resp.roles);
                   localStorage.removeItem('user_loggued');
@@ -66,7 +80,7 @@ export class LoginService {
           }
           return of(false);
         }),
-        catchError((err: any) => {
+        catchError((err: Error) => {
           this.tokenStorageService.clearLocalStorage();
           return observableThrowError(err);
         })
@@ -80,7 +94,7 @@ export class LoginService {
         refresh_token: localStorage.getItem('refresh_token'),
       })
       .pipe(
-        map((res) => {
+        map(() => {
           this.tokenStorageService.clearLocalStorage();
           window.location.href = '/login';
           return false;
@@ -88,14 +102,14 @@ export class LoginService {
       );
   }
 
-  renewAccessToken(): Observable<any> {
+  renewAccessToken(): Observable<boolean> {
     const refreshToken = localStorage.getItem('refresh_token');
     if (!refreshToken) {
       return of(false);
     }
     // si no es la primera solicitud al token renew
     if (LoginService.renewRequested) {
-      return new Observable<any>((observer) => {
+      return new Observable<boolean>((observer) => {
         LoginService.observers.push(observer);
       });
     }
@@ -103,16 +117,16 @@ export class LoginService {
     LoginService.renewRequested = true;
     const httpParams = this.getHttpParamsRenewToken(refreshToken);
     return this.http
-      .post(this.refreshUrl, httpParams, {
+      .post<AuthResponseBody>(this.refreshUrl, httpParams, {
         headers: { 'Content-Type': 'application/json' },
         responseType: 'json',
         observe: 'response',
       })
       .pipe(
-        catchError((error) => {
+        catchError(() => {
           return of({});
         }),
-        map((res: any) => {
+        map((res: AuthHttpResponse) => {
           if (res.body) {
             this.tokenStorageService.setLocalStorage(res.body);
             return true;
