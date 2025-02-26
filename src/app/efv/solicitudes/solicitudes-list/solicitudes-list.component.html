@@ -1,0 +1,101 @@
+<div @fadeIn>
+  <ng-search-bar
+    [permissions]="permissions"
+    [(itemPerPage)]="itemPerPage"
+    [(find)]="param_search"
+    (search)="search(true)"
+    [hasFilters]="hasFilters()"
+    (resetFilters)="resetFilters()"
+    [hideSearch]="hideSearch"
+  >
+    <ng-choosen
+      [items]="estados"
+      [options]="estadoschoosenOpts"
+      [(ngModel)]="actionEstadoFilter"
+      name="estado_filter"
+      id="estado_filter"
+    ></ng-choosen>
+
+    <ng-choosen
+      [items]="tiposVisa"
+      [options]="tiposVisachoosenOpts"
+      [(ngModel)]="actionTiposVisaFilter"
+      name="tiposVisa"
+      id="tiposVisa"
+    ></ng-choosen>
+
+    <ng-choosen
+      [items]="entidades"
+      [options]="entidadeschoosenOpts"
+      [(ngModel)]="actionEntidadesFilter"
+      name="entidades"
+      id="entidades"
+    ></ng-choosen>
+
+    <ng-datepicker
+      [pickerType]="'calendar'"
+      [(ngModel)]="fechaFilter"
+      name="fechaDay"
+      [placeholder]="'Desde'"
+      [maxDate]="today"
+      #fechaDay="ngModel"
+      id="fechaIni"
+    ></ng-datepicker>
+
+    <ng-datepicker
+      [pickerType]="'calendar'"
+      [(ngModel)]="fechaFinFilter"
+      name="fechaDay"
+      [placeholder]="'Hasta'"
+      [maxDate]="today"
+      [minDate]="fechaFilter"
+      #fechaDay="ngModel"
+      id="fechaFin"
+    ></ng-datepicker>
+
+    <input
+      type="search"
+      class="form-control"
+      name="id_solicitud"
+      [(ngModel)]="id_solicitud"
+      placeholder="Id Solicitud"
+    />
+  </ng-search-bar>
+  <div class="actions__requests">
+    <button
+      class="btn btn-success"
+      style="display: flex; justify-content: center; align-items: center"
+      (click)="pendientes()"
+      [disabled]="!isDisableButtonProcesarPendiente"
+    >
+      Procesar pendiente
+    </button>
+
+    <button
+      class="btn btn-danger"
+      (click)="solicitudError()"
+      [disabled]="!isDisableButtonRestaurarSolicitud"
+    >
+      Restaurar Solicitudes
+      <i class="fa fa-undo"></i>
+    </button>
+  </div>
+
+  <ng-table
+    [rows]="objects"
+    [headers]="headers"
+    [extraHeaders]="extraHeaders"
+    [headerView]="headerView"
+    [permissions]="permissions"
+    [currentItems]="currentItems"
+    [itemPerPage]="itemPerPage"
+    [(currentpage)]="currentpage"
+    [totalItems]="totalItems"
+    [totalPage]="totalPage"
+    (update)="update($event)"
+    (removeConfirm)="removeConfirm($event)"
+    (view)="view($event)"
+    (print)="printUI($event)"
+    (search)="search()"
+  ></ng-table>
+</div>

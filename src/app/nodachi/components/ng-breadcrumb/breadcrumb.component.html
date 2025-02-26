@@ -1,0 +1,16 @@
+<nav aria-label="breadcrumb" role="navigation">
+  <ol class="breadcrumb">
+    <li *ngFor="let url of _urls; let last = last; let first = first"
+        class="breadcrumb-item" [ngClass]="{'active': last}" [attr.aria-current]="last?'page':null">
+      <a *ngIf="first; else elseBlock">
+        {{friendlyName(url)}}
+      </a>
+      <ng-template #elseBlock>
+        <a role="button" *ngIf="!last && url == prefix" (click)="navigateTo('/')">{{url}}</a>
+        <a role="button" *ngIf="!last && url != prefix" routerLink="{{url}}">{{friendlyName(url)}}</a>
+        <span *ngIf="last">{{friendlyName(url)}}</span>
+        <span *ngIf="last && url == prefix">{{friendlyName('/')}}</span>
+      </ng-template>
+    </li>
+  </ol>
+</nav>

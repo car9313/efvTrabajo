@@ -1,0 +1,52 @@
+<div @fadeIn>
+  <table class="table table-bordered">
+    <tbody>
+      <tr>
+        <th>Primer nombre</th>
+        <td>{{model.primer_nombre}}</td>
+      </tr>
+      <tr>
+        <th>Segundo nombre</th>
+        <td>{{model.segundo_nombre}}</td>
+      </tr>
+      <tr>
+        <th>Primer apellido</th>
+        <td>{{model.primer_apellido}}</td>
+      </tr>
+      <tr>
+        <th>Segundo apellido</th>
+        <td>{{model.segundo_apellido}}</td>
+      </tr>
+      <tr>
+        <th>Fecha nacimiento</th>
+        <td>{{model.fecha_nacimiento}}</td>
+      </tr>
+      <tr>
+        <th>Ciudadania</th>
+        <td>{{model.ciudadania}}</td>
+      </tr>
+      <tr>
+        <th>Pasaporte</th>
+        <td>{{model.pasaporte}}</td>
+      </tr>
+
+      <tr>
+        <th>Pais</th>
+        <td>{{model.pais}}</td>
+      </tr>
+      <tr>
+        <th>Fecha de venta</th>
+        <td>{{model.fecha_venta}}</td>
+      </tr>
+      <tr>
+        <th>Fecha de activación </th>
+        <td>{{model.fecha_activacion}}</td>
+      </tr>
+      <tr>
+        <th>Fecha de expiración</th>
+        <td>{{model.fecha_expiracion}}</td>
+      </tr>
+    </tbody>
+  </table>
+  <ng-fbutton (cancel)="goList()" [showSaveNew]="false" [showSave]="false"></ng-fbutton>
+</div>

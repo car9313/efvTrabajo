@@ -1,0 +1,15 @@
+<div class="ng-pagination">
+  <pagination-controls [id]="paginationId" (pageChange)="onSearch($event)" [previousLabel]="'Anterior'"
+    class="text-center" [nextLabel]="'Siguiente'" autoHide="true"></pagination-controls>
+  <div class="ng-pagination-data">
+    <div *ngIf="currentpage == 1 && totalitems > 0">
+      Resultado <strong>1</strong> - <strong>{{currentitems}}</strong> de <strong>{{totalitems}}</strong>
+    </div>
+    <div *ngIf="currentpage != 1 && totalitems > 0">
+      Resultado <strong>{{(currentpage - 1) * itemperpage + 1}}</strong> - <strong>{{currentitems + (currentpage -
+        1) * itemperpage }}</strong> de <strong>{{totalitems}}</strong>
+    </div>
+    <div *ngIf="totalitems == 0 && currentitems == 1"></div>
+    <div *ngIf="totalpage == 1"></div>
+  </div>
+</div>

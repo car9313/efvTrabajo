@@ -1,0 +1,70 @@
+<div @fadeIn>
+  <ng-search-bar
+    [permissions]="permissions"
+    [(itemPerPage)]="itemPerPage"
+    [(find)]="param_search"
+    (search)="search(true)"
+    (create)="create()"
+    [hideCreate]="hideCreate"
+    [hasFilters]="hasFilters()"
+    (resetFilters)="resetFilters()"
+    [hideSearch]="hideSearch"
+  >
+    <ng-choosen
+      [items]="estados"
+      [options]="estadoschoosenOpts"
+      [(ngModel)]="actionEstadoFilter"
+      name="estado_filter"
+      id="estado_filter"
+    ></ng-choosen>
+
+    <input
+      type="search"
+      class="form-control"
+      name="id_solicitud"
+      [(ngModel)]="id_solicitud"
+      placeholder="Id Solicitud"
+    />
+
+    <input
+      type="search"
+      class="form-control"
+      name="id_segmento"
+      [(ngModel)]="id_segmento"
+      placeholder="Id Segmento"
+    />
+
+    <ng-choosen
+      [items]="tiposVisa"
+      [options]="tiposVisachoosenOpts"
+      [(ngModel)]="actionTiposVisaFilter"
+      name="tiposVisa"
+      id="tiposVisa"
+    ></ng-choosen>
+
+    <ng-choosen
+      [items]="entidades"
+      [options]="entidadeschoosenOpts"
+      [(ngModel)]="actionEntidadesFilter"
+      name="entidades"
+      id="entidades"
+    ></ng-choosen>
+  </ng-search-bar>
+  <ng-table
+    [rows]="objects"
+    [headers]="headers"
+    [extraHeaders]="extraHeaders"
+    [headerView]="headerView"
+    [permissions]="permissions"
+    [currentItems]="currentItems"
+    [itemPerPage]="itemPerPage"
+    [(currentpage)]="currentpage"
+    [totalItems]="totalItems"
+    [totalPage]="totalPage"
+    (update)="update($event)"
+    (removeConfirm)="removeConfirm($event)"
+    (view)="view($event)"
+    (print)="printUI($event)"
+    (search)="search()"
+  ></ng-table>
+</div>

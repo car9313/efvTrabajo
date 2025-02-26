@@ -1,0 +1,62 @@
+.ng-multiselect-dropdown,
+:host {
+  position: relative;
+}
+
+a {
+  outline: none;
+}
+
+.dropdown-inline {
+  display: inline-block;
+}
+
+.dropdown-toggle {
+  padding-right: 3px;
+
+  &::after {
+    margin-left: 1.255em;
+  }
+
+  &[disabled] {
+    cursor: default;
+    &::after {
+      display: none;
+    }
+  }
+}
+
+.dropdown.form-control.dropdown-inline {
+  padding: 0;
+}
+
+.dropdown.w-100.dropdown-inline > .btn-secondary {
+  color: #495057;
+  background-color: #fff;
+  border: 1px solid #ced4da;
+  box-shadow: none;
+  font-weight: normal;
+}
+
+.float-left {
+  text-align: left;
+  width: calc(100% - 2em);
+}
+
+.dropdown-item.active > a > span {
+  color: #ffffff;
+}
+
+.loading {
+  z-index: 1;
+}
+
+.deselect {
+  position: absolute;
+  top: 0.375rem;
+  right: 0.8em;
+
+  &[disabled] {
+    display: none;
+  }
+}

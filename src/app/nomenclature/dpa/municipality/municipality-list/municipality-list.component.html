@@ -1,0 +1,35 @@
+<div @fadeIn>
+  <ng-search-bar
+    [permissions]="permissions"
+    [(itemPerPage)]="itemPerPage"
+    [(find)]="param_search"
+    (search)="search(true)"
+    (create)="create()"
+    [hasFilters]="hasFilters()"
+    (resetFilters)="resetFilters()">
+    <div class="items padding-right-10">
+      <ng-choosen
+        [items]="provinces_filter"
+        [options]="choosenOpts"
+        [(ngModel)]="province_filter"
+        [disabled]="disable_prov"
+        name="province"
+        id="province"></ng-choosen>
+    </div>
+  </ng-search-bar>
+  <ng-table
+    [rows]="objects"
+    [headers]="headers"
+    [permissions]="permissions"
+    [currentItems]="currentItems"
+    [itemPerPage]="itemPerPage"
+    [(currentpage)]="currentpage"
+    [totalItems]="totalItems"
+    [totalPage]="totalPage"
+    (update)="update($event)"
+    (view)="view($event)"
+    (removeConfirm)="removeConfirm($event)"
+    (print)="printUI($event)"
+    (search)="search()"></ng-table>
+</div>
+

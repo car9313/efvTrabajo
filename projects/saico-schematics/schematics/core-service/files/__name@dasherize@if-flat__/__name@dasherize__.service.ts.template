@@ -1,0 +1,13 @@
+import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {CoreService} from '@app/nodachi/utils/core-service';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class <%= classify(name) %>Service extends CoreService {
+
+  constructor(public httpClient: HttpClient) {
+      super(httpClient, '/api/v1/<%= dasherize(name) %>');
+    }
+}

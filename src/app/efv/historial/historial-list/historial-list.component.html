@@ -1,0 +1,51 @@
+<div
+    @fadeIn class="ph-admin">
+    <ng-search-bar
+      [permissions]="permissions"
+      [hideCreate]="true"
+      [(itemPerPage)]="itemPerPage"
+      [(find)]="param_search"
+      (search)="search(true)"
+      (create)="create()"
+      [hasFilters]="hasFilters()"
+      (resetFilters)="resetFilters()">
+    </ng-search-bar>
+    <ng-table
+      [rows]="objects"
+      [headers]="headers"
+      [permissions]="{
+    read: true
+  }"
+      [currentItems]="currentItems"
+      [itemPerPage]="itemPerPage"
+      [(currentpage)]="currentpage"
+      [totalItems]="totalItems"
+      [totalPage]="totalPage"
+      (update)="update($event)"
+      (view)="view($event)"
+      (removeConfirm)="removeConfirm($event)"
+      (search)="search()"></ng-table>
+<!--
+    <p>{{objects.numero_fv|json}}}</p>
+    <div *ngFor="let comment of objects; let j = index">
+      <p>{{comment|json}}}</p>
+      <div *ngIf="j > 0" class="margin-top-20"></div>
+      <h2>Crear reserva</h2>
+      <hr/>
+      <div fxLayout="column wrap" fxLayoutGap="20px">
+        <mat-card class="card-mine rounder">
+          <div class="row">
+            <div class="col">
+              <h5 class="example-card title-size title" [ngClass]="getColor(comment.statuse_fv, false)">
+                {{comment.statuse_fv}}:{{comment.numero_fv}}
+              </h5>
+            </div>
+            <div class="col">
+              <mat-card-subtitle class="right">{{comment.numero_fv}}</mat-card-subtitle>
+              <br>
+            </div>
+          </div>
+        </mat-card>
+      </div>
+    </div>-->
+</div>

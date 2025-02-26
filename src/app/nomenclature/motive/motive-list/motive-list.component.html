@@ -1,0 +1,25 @@
+<div @fadeIn>
+  <ng-search-bar
+    [permissions]="permissions"
+    [(itemPerPage)]="itemPerPage"
+    [(find)]="param_search"
+    (search)="search(true)"
+    (create)="create()"
+    [hasFilters]="hasFilters()"
+    (resetFilters)="resetFilters()">
+  </ng-search-bar>
+  <ng-table
+    [rows]="objects"
+    [headers]="headers"
+    [permissions]="permissions"
+    [currentItems]="currentItems"
+    [itemPerPage]="itemPerPage"
+    [(currentpage)]="currentpage"
+    [totalItems]="totalItems"
+    [totalPage]="totalPage"
+    (update)="update($event)"
+    (view)="view($event)"
+    (removeConfirm)="removeConfirm($event)"
+    (search)="search()"></ng-table>
+</div>
+

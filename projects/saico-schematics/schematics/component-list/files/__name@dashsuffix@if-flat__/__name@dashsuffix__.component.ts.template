@@ -1,0 +1,28 @@
+import {Component<% if(!!viewEncapsulation) { %>, ViewEncapsulation<% }%><% if(changeDetection !== 'Default') { %>, ChangeDetectionStrategy<% }%>} from '@angular/core';
+import {Router} from '@angular/router';
+import {animations, IComponent<%= componentSuffix %>} from '@app/nodachi';
+import {<%= classify(name) %>Service} from '@app/nodachi/common-services';
+
+@Component({
+  selector: '<%= selector %>',<% if(inlineTemplate) { %>
+  template: `
+    <p>
+      <%= dasherize(name) %> works!
+    </p>
+  `,<% } else { %>
+  templateUrl: './<%= dashsuffix(name) %>.component.html',
+  animations: animations,<% } if(inlineStyle) { %>
+  styles: []<% } else { %>
+  styleUrls: ['./<%= dashsuffix(name) %>.component.<%= style %>']<% } %><% if(!!viewEncapsulation) { %>,
+  encapsulation: ViewEncapsulation.<%= viewEncapsulation %><% } if (changeDetection !== 'Default') { %>,
+  changeDetection: ChangeDetectionStrategy.<%= changeDetection %><% } %>
+})
+export class <%= classsuffix(name) %>Component extends IComponent<%= componentSuffix %> {
+
+  constructor(public <%= camelize(name) %>Service: <%= classify(name) %>Service,
+                public router: Router) {
+      super(<%= camelize(name) %>Service, '<%= classify(name) %>', 'Administrar <%= capitalize(name) %>', router);
+          this.headers = {id: 'Id'};
+    }
+
+}

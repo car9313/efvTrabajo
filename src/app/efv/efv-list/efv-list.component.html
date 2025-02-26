@@ -1,0 +1,21 @@
+<div @fadeIn>
+  <ng-search-bar [(itemPerPage)]="itemPerPage" [(find)]="param_search" (search)="search(true)"
+    [hasFilters]="hasFilters()" (resetFilters)="resetFilters()" [hideSearch]="hideSearch">
+    <div class="items padding-right-10">
+      <ng-choosen [items]="estados" [options]="estadoschoosenOpts" [(ngModel)]="actionEstadoFilter" name="estado_filter"
+        id="estado_filter"></ng-choosen>
+    </div>
+    <div class="items padding-right-10">
+      <input type="search" class="form-control" name="id_segmento" [(ngModel)]="id_segmento" placeholder="Id Segmento">
+    </div>
+    <div class="items padding-right-10">
+      <input type="search" class="form-control" name="id_solicitud" [(ngModel)]="id_solicitud"
+        placeholder="Id Solicitud">
+    </div>
+  </ng-search-bar>
+
+  <ng-table [rows]="objects" [headers]="headers" [permissions]="permissions" [currentItems]="currentItems"
+    [itemPerPage]="itemPerPage" [(currentpage)]="currentpage" [totalItems]="totalItems" [totalPage]="totalPage"
+    (update)="update($event)" (view)="view($event)" (print)="printUI($event)" (removeConfirm)="removeConfirm($event)"
+    (search)="search()"></ng-table>
+</div>

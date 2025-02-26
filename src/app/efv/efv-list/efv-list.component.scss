@@ -1,0 +1,16 @@
+.button-add{
+  margin: 1.75rem 0.75rem;
+  color: #284700;
+  a{
+    &:hover{
+      cursor: pointer;
+  }
+    .fa{
+      font-size: 1.5rem
+  }
+}
+}
+.mat-form-field{
+font-size: 14px;
+  width: 100%;
+}

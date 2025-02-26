@@ -1,0 +1,26 @@
+<div @fadeIn>
+  <form autocomplete="off" class="form-content" (ngSubmit)="onSubmit()" #appForm="ngForm">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label for="type" class="required">Tipo</label>
+          <input required class="form-control" [(ngModel)]="model.type" name="type" id="type">
+        </div>
+        <div class="form-group">
+          <label for="url_pattern" class="required">URL</label>
+          <input required class="form-control" [(ngModel)]="model.url_pattern" name="url_pattern" id="url_pattern">
+        </div>
+        <div class="form-group">
+          <label for="description">Descripción</label>
+          <textarea class="form-control" [(ngModel)]="model.description" name="description" id="description"></textarea>
+        </div>
+      </div>
+
+
+
+    </div>
+
+    <ng-fbutton (save)="save()" (saveNew)="saveNew()" (cancel)="goList()"
+      [disabled]="!(appForm.form.valid)"></ng-fbutton>
+  </form>
+</div>

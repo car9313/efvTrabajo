@@ -1,0 +1,125 @@
+@import "../variables";
+
+app-efv-view {
+  .title-size {
+    font-size: 1.1rem;
+  }
+
+  .subtitle-size {
+    font-size: 1rem;
+  }
+
+  .content-size {
+    font-size: 0.95rem;
+    font-weight: 400;
+  }
+
+  .icon-size-large {
+    font-size: 5rem;
+    font-weight: 400;
+  }
+
+  .color-blue {
+    color: $blue;
+  }
+  .color-blue-hist {
+    color: #005197;
+  }
+
+  .color-red {
+    color: $red;
+  }
+
+  .color-black {
+    color: black;
+  }
+
+  .color-green {
+    color: $green;
+  }
+
+  .color-content {
+    color: $content;
+  }
+
+  .title {
+    font-weight: 500;
+    display: block;
+  }
+  .content-header {
+    font-weight: 500;
+  }
+  .border-color-green {
+    border-color: $green !important;
+  }
+
+  .border-color-red {
+    border-color: $red !important;
+  }
+  .border-color-blue {
+    border-color: #005197;
+  }
+
+  .rounder {
+    border-radius: 15px !important;
+  }
+
+  .right {
+    float: right !important;
+  }
+  .right-in-large {
+    float: right !important;
+  }
+
+  .left {
+    float: left !important;
+  }
+
+  .center {
+    display: block !important;
+    width: auto !important;
+    text-align: center !important;
+  }
+  .cont {
+    margin-right: 10px;
+    margin-left: 10px;
+  }
+
+  .padding-left-large {
+    padding-left: 30px;
+  }
+
+  .margin-top-20 {
+    margin-top: 20px;
+  }
+
+  .btn-white:hover {
+    color: $blue;
+    background-color: #e2e6ea;
+  }
+  .mat-tab-header {
+    border-bottom: rgba(255, 255, 255, 0) !important;
+  }
+  .mat-tab-label {
+    height: 35px !important;
+    background-color: lightgray;
+    border-radius: 4px;
+    margin-left: 10px;
+    margin-right: 10px;
+    color: rgb(66, 66, 66);
+    font-size: 1.09rem;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    min-width: 29.5%;
+  }
+  .mat-tab-label-active {
+    background-color: #2A6B55;
+    color: white;
+    border: none;
+    opacity: 1 !important;
+  }
+  .mat-ink-bar {
+    background-color: rgba(255, 255, 255, 0) !important;
+  }
+
+}

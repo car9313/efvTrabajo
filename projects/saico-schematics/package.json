@@ -1,0 +1,18 @@
+{
+  "name": "@saico/schematics",
+  "version": "0.0.1",
+  "scripts": {
+    "build": "../../node_modules/.bin/tsc -p tsconfig.schematics.json",
+    "copy:schemas": "cp --parents schematics/*/schema.json ../../dist/saico-schematics/",
+    "copy:files": "cp --parents -p schematics/*/files/*/** ../../dist/saico-schematics/",
+    "copy:collection": "cp schematics/collection.json ../../dist/saico-schematics/schematics/collection.json",
+    "deps": "cp --parents schematics/third_party/github.com/Microsoft/TypeScript/lib/** ../../dist/saico-schematics/",
+    "postbuild": "npm run copy:schemas && npm run copy:files && npm run copy:collection && npm run deps"
+  },
+  "peerDependencies": {
+    "@schematics/angular": "~8.2.0",
+    "@angular/common": "~8.2.0",
+    "@angular/core": "~8.2.0"
+  },
+  "schematics": "./schematics/collection.json"
+}

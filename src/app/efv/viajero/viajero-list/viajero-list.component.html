@@ -1,0 +1,37 @@
+<div @fadeIn class="ph-admin">
+  <ng-search-bar [permissions]="permissions" [hideCreate]="true" [(itemPerPage)]="itemPerPage" [(find)]="param_search"
+    (search)="search(true)" (create)="create()" [hasFilters]="hasFilters()" (resetFilters)="resetFilters()">
+    <div class="items col-md-3 padding-right-10">
+      <ng-datepicker [pickerType]="'calendar'" [(ngModel)]="fechaFilterNacimiento" name="fechaDayNacimeinto"
+        [placeholder]="'Nacimiento Desde'" [maxDate]="today" #fechaDay="ngModel"
+        id="fechaIniNacimiento"></ng-datepicker>
+    </div>
+    <div class="items col-md-3 padding-right-10">
+      <ng-datepicker [pickerType]="'calendar'" [(ngModel)]="fechaFinFilterNacimiento" name="fechaDayNaciemiento"
+        [placeholder]="'Nacimiento Hasta'" [maxDate]="today" [minDate]="fechaFilterNacimiento" #fechaDay="ngModel"
+        id="fechaFin"></ng-datepicker>
+    </div>
+
+    <div class="items padding-right-10">
+      <input type="search" class="form-control" name="efv" [(ngModel)]="numero_fv" placeholder="eFV">
+    </div>
+    <div class="items padding-right-10">
+      <input type="search" class="form-control" name="pas" [(ngModel)]="pasaporte" placeholder="Pasaporte">
+    </div>
+    <div class="items col-md-3 padding-right-10">
+      <ng-datepicker [pickerType]="'calendar'" [(ngModel)]="fechaFilterActivacion" name="fechaDayActivacion"
+        [placeholder]="'Activación Desde'" [maxDate]="today" #fechaDay="ngModel" id="fechaIni"></ng-datepicker>
+    </div>
+    <div class="items col-md-3 padding-right-10">
+      <ng-datepicker [pickerType]="'calendar'" [(ngModel)]="fechaFinFilterActivacion" name="fechaDayActivacion"
+        [placeholder]="'Activación Hasta'" [maxDate]="today" [minDate]="fechaFilterActivacion" #fechaDay="ngModel"
+        id="fechaFin"></ng-datepicker>
+    </div>
+
+  </ng-search-bar>
+  <ng-table [rows]="objects" [headers]="headers" [permissions]="permissions" [currentItems]="currentItems"
+    [itemPerPage]="itemPerPage" [(currentpage)]="currentpage" [totalItems]="totalItems" [totalPage]="totalPage"
+    (update)="update($event)" (view)="view($event)" (removeConfirm)="removeConfirm($event)" (search)="search()"
+    (print)="printUI($event)">
+  </ng-table>
+</div>

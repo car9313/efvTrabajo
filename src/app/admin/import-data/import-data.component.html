@@ -1,0 +1,68 @@
+<div @fadeIn>
+  <form autocomplete="off" #appForm="ngForm">
+    <div class="form-group">
+      <label for="field" class="required">Codificador</label>
+      <ng-choosen [items]="fields" id="field" name="field" [(ngModel)]="model.codificador" required
+        (change)="getFields($event)">
+      </ng-choosen>
+    </div>
+    <div class="row">
+      <div *ngIf="model.codificador && model.filtro == 'provincia' " class="col-md-6">
+        <div class="form-group">
+          <label class="required">Provincia</label>
+          <div class="clearfix"></div>
+          <ng-choosen required [items]="provinces" [(ngModel)]="model.filtro_valor" name="province_id"
+            id="province_id"></ng-choosen>
+        </div>
+      </div>
+      <div *ngIf="model.codificador.includes('censo')" class="col-md-6">
+        <div class="form-group">
+          <label for="anho_censo" class="required">Año de censo</label>
+          <input type="number" class="form-control" [(ngModel)]="model.anho_censo" id="anho_censo" name="anho_censo"
+            [min]="1995">
+        </div>
+      </div>
+    </div>
+    <div *ngIf="model.codificador" class="form-group">
+      <table class="table table-sm table-bordered">
+        <thead>
+          <tr>
+            <td>Campos</td>
+            <td>Número de columna en Excel</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let campo of model.fields_obj; let i = index">
+            <td>{{campo.text}}</td>
+            <td><input required class="form-control" type="number" id="index-{{i}}" name="index-{{i}}"
+                [(ngModel)]="model.indexes[i]" [min]="0" /></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div *ngIf="model.codificador" class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="field_key">Campo identificativo</label>
+          <input type="number" class="form-control" [(ngModel)]="model.field_key" id="field_key" name="field_key"
+            [min]="0">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="row_start">Fila inicial</label>
+          <input type="number" class="form-control" [(ngModel)]="model.row_start" id="row_start" name="row_start"
+            [min]="0">
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="model.codificador" class="form-group">
+      <label for="file" class="required">Documento Excel</label>
+      <ng-file name="file" id="file" required [(ngModel)]="file" #imageFileInput="ngModel"
+        (change)="fileSelect($event,imageFileInput)" [fileName]="fileName" [fileRegex]="fileTypeExcel"></ng-file>
+    </div>
+    <ng-fbutton [showCancel]="false" [showSaveNew]="false" [disabled]="appForm.form.invalid"
+      (save)="save()"></ng-fbutton>
+  </form>
+</div>

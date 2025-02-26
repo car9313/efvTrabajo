@@ -1,0 +1,143 @@
+
+
+<mat-tab-group (selectedTabChange)="changeTab($event)" mat-align-tabs="center" animationDuration="0ms"
+               class="padding-top-20">
+  <mat-tab>
+    <ng-template mat-tab-label>
+      Efv
+    </ng-template>
+    <div class="container-own">
+      <fieldset>
+        <legend>Efv</legend>
+        <table class="table table-bordered">
+          <tbody>
+          <tr>
+            <th>Efv</th>
+            <td>{{model.numero_fv}}</td>
+          </tr>
+          <tr>
+            <th>Estado</th>
+            <td>{{model.statuse_fv}}</td>
+          </tr>
+          <tr>
+            <th>Visa</th>
+            <td>{{model.categoria_visa}}</td>
+          </tr>
+          <tr>
+            <th>Fecha Registro</th>
+            <td>{{model.fecha_registro}}</td>
+          </tr>
+          <tr>
+            <th>Fecha Habilitado</th>
+            <td>{{model.fecha_hab}}</td>
+          </tr>
+          <tr>
+            <th>Fecha Desactivado</th>
+            <td>{{model.fecha_activado}}</td>
+          </tr>
+          <tr>
+            <th>Fecha Desactivado</th>
+            <td>{{model.fecha_desactivado}}</td>
+          </tr>
+          <tr>
+            <th>Fecha Revocado</th>
+            <td>{{model.fecha_revocado}}</td>
+          </tr>
+          <tr>
+            <th>Id Segmento</th>
+            <td>{{model.id_segmento}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </fieldset>
+
+    </div>
+  </mat-tab>
+  <mat-tab label="Second">
+    <fieldset>
+    <legend>Solicitud</legend>
+    <table class="table table-bordered">
+      <tbody>
+      <tr>
+        <th>Id Solicitud</th>
+        <td>{{model.id_solicitud}}</td>
+      </tr>
+     <tr>
+        <th>Estado Solicitud</th>
+        <td>{{model.estado_solicitd}}</td>
+      </tr>
+      <tr>
+        <th>Estado Proceso</th>
+        <td>{{model.estado_proceso}}</td>
+      </tr>
+      <tr>
+        <th>Fecha Solicitud</th>
+        <td>{{model.fecha_solicitud}}</td>
+      </tr>
+      <tr>
+        <th>Fecha Estado Proceso</th>
+        <td>{{model.fecha_estado_proceso}}</td>
+      </tr>
+      <tr>
+        <th>Fecha Estado Solicitud</th>
+        <td>{{model.fecha_estado_sol}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </fieldset></mat-tab>
+  <mat-tab label="Third">
+    <fieldset>
+    <legend>Viajero</legend>
+    <table class="table table-bordered">
+      <tbody>
+      <tr>
+        <th>Primer Nombre</th>
+        <td>{{model.primer_nombre}}</td>
+      </tr>
+      <tr>
+        <th>Segundo Nombre</th>
+        <td>{{model.segundo_nombre}}</td>
+      </tr>
+      <tr>
+        <th>Primer Apellido</th>
+        <td>{{model.primer_apellido}}</td>
+      </tr>
+      <tr>
+        <th>Segundo Apellido</th>
+        <td>{{model.segundo_apellido}}</td>
+      </tr>
+      <tr>
+        <th>Sexo</th>
+        <td>{{model.sexo}}</td>
+      </tr>
+      <tr>
+        <th>Fecha Nacimiento</th>
+        <td>{{model.fecha_nacimiento}}</td>
+      </tr>
+      <tr>
+        <th>Ciudadania</th>
+        <td>{{model.ciudadania}}</td>
+      </tr>
+      <tr>
+        <th>Pasaporte</th>
+        <td>{{model.pasaporte}}</td>
+      </tr>
+      <tr>
+        <th>Intermediario</th>
+        <td>{{model.intermediario}}</td>
+      </tr>
+      <tr>
+        <th>Pais</th>
+        <td>{{model.pais}}</td>
+      </tr>
+      <tr>
+        <th>Fecha Venta</th>
+        <td>{{model.fecha_venta}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </fieldset>
+  </mat-tab>
+</mat-tab-group>
+
+

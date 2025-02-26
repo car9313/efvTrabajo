@@ -1,0 +1,13 @@
+<div class="p-5">
+  <form autocomplete="off" #printForm="ngForm">
+    <div class="form-group">
+      <label for="title" class="required">Titulo del reporte</label>
+      <input type="text" required [(ngModel)]="title" name="title" id="title" class="form-control">
+    </div>
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-primary mr-2" type="button" (click)="onAction(true)"
+        [disabled]="!printForm.form.valid">Aceptar</button>
+      <button class="btn btn-danger" type="button" (click)="onAction(false)">Cancelar</button>
+    </div>
+  </form>
+</div>

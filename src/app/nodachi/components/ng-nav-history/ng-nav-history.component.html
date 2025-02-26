@@ -1,0 +1,18 @@
+<ul class="list-inline position-relative">
+  <a class="badge mr-1" routerLinkActive="badge-primary"
+     [routerLinkActiveOptions]="{exact: true}"
+     #rl="routerLinkActive" [class.badge-secondary]="!rl.isActive"
+     [routerLink]="[item.url]" *ngFor="let item of items" (click)="navigateTo(item.url)"
+     (contextmenu)="contextmenu($event,item.url)">
+    {{item.title}}
+    <button type="button" class="close" aria-label="Close"
+            (click)="remove($event,item.url)">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </a>
+  <div class="dropdown-menu d-block" [ngStyle]="{'left.px': left,'top.px': top}" aria-labelledby="dropdownMenuButton" id="context-menu" *ngIf="showContextMenu">
+    <a class="dropdown-item" href="#" (click)="contextRemove($event,selectedUrl)">Cerrar</a>
+    <a class="dropdown-item" href="#" (click)="contextAll($event)">Cerrar Todos</a>
+    <a class="dropdown-item" href="#" (click)="contextOther($event,selectedUrl)">Cerrar Otros</a>
+  </div>
+</ul>

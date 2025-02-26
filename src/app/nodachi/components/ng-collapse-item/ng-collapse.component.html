@@ -1,0 +1,29 @@
+<div class="card mb-3" id="collapse_header{{id}}">
+  <div class="card-header collapse-header" (click)="collapse()">
+    <div class="row">
+      <div class="col-11">
+        <div *ngFor="let enc of encabezados" class="d-inline">
+          <h6 class="mb-0  d-inline">
+            {{enc.key}}:
+          </h6>
+          <p class="d-inline mr-2">
+            {{enc.value}}
+          </p>
+        </div>
+      </div>
+      <div class="col-1">
+        <span class=" fa " [ngClass]="{'fa-caret-down': !collapsed, 'fa-caret-up': collapsed}"></span>
+      </div>
+    </div>
+  </div>
+
+  <div id="collapse_item{{id}}" class="collapse" [ngClass]="{'show': (collapsed)}">
+    <div class="card-body">
+      <div *ngFor="let item of ocultos">
+        <h6 class="mb-0">{{item.key}}:</h6>
+        <p>{{item.value}}</p>
+      </div>
+      <h5></h5>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,23 @@
+<div @fadeIn>
+  <table class="table table-bordered">
+    <tbody>
+    <tr>
+      <th>Código</th>
+      <td>{{model.code}}</td>
+    </tr>
+    <tr>
+      <th>Acrónimo</th>
+      <td>{{model.desc_short}}</td>
+    </tr>
+    <tr>
+      <th>Nombre</th>
+      <td>{{model.desc_long}}</td>
+    </tr>
+    <tr>
+      <th>Provincia</th>
+      <td>{{model.province_descrip}}</td>
+    </tr>
+    </tbody>
+  </table>
+  <ng-fbutton (cancel)="goList()" [showSaveNew]="false" [showSave]="false"></ng-fbutton>
+</div>

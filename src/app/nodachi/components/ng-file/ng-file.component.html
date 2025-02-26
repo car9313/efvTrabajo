@@ -1,0 +1,15 @@
+<div class="custom-file">
+  <input type="file" class="custom-file-input" #photoFileInput="ngModel" id="photoFileInput" name="photoFileInput"
+         [ng2FileType]="fileRegex" [(ngModel)]="photo"
+         (change)="selectPhoto($event,photoFileInput)" #fileInput>
+  <label class="custom-file-label" for="photoFileInput">
+    {{(objFile | isNullOrUndefined)?emptyMsg:_fileName}}
+  </label>
+  <button *ngIf="!(objFile | isNullOrUndefined)" (click)="remove()" class="btn btn-danger"><span class="fa fa-trash-alt"></span></button>
+</div>
+
+<ng-container *ngIf="_photoType!='' && _photoType!=undefined">
+  <div class="invalid-feedback">Debe seleccionar una imagen</div>
+  <div></div>
+  <img alt="" [src]="_fileUrl" *ngIf="_fileUrl" class="file-photo img-thumbnail">
+</ng-container>

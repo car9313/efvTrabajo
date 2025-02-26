@@ -1,0 +1,83 @@
+<div @fadeIn class="ph-admin">
+  <ng-search-bar
+    [permissions]="permissions"
+    [hideCreate]="true"
+    [(itemPerPage)]="itemPerPage"
+    [(find)]="param_search"
+    [hidePerPage]="true"
+    [hideSearch]="true"
+    (search)="search(true)"
+    [disableSearch]="!efv && !id_solicitud && !id_segmento"
+    [hasFilters]="hasFilters()"
+    (resetFilters)="resetFilters1()"
+  >
+    <input
+      type="number"
+      class="form-control"
+      name="id_segmento"
+      [(ngModel)]="id_segmento"
+      placeholder="Id Segmento"
+      (input)="updateEstado()"
+    />
+
+    <input
+      type="number"
+      class="form-control"
+      name="id_solicitud"
+      [(ngModel)]="id_solicitud"
+      placeholder="Id Solicitud"
+      (input)="updateEstado()"
+    />
+
+    <input
+      type="text"
+      class="form-control"
+      name="efv"
+      [(ngModel)]="efv"
+      placeholder="eFV"
+      (input)="updateEstado()"
+    />
+
+    <ng-choosen
+      [items]="estados"
+      [options]="estadoschoosenOpts"
+      [(ngModel)]="actionEstadoFilter"
+      name="estado_filter"
+      id="estado_filter"
+      [disabled]="!efv && !id_solicitud && !id_segmento"
+    ></ng-choosen>
+    <ng-choosen
+      [items]="tiposVisa"
+      [options]="tiposVisachoosenOpts"
+      [(ngModel)]="actionTiposVisaFilter"
+      name="tiposVisa"
+      id="tiposVisa"
+    ></ng-choosen>
+
+    <ng-choosen
+      [items]="entidades"
+      [options]="entidadeschoosenOpts"
+      [(ngModel)]="actionEntidadesFilter"
+      name="entidades"
+      id="entidades"
+    ></ng-choosen>
+  </ng-search-bar>
+  <ng-table
+    [rows]="objects"
+    [headers]="headers"
+    [permissions]="permissions"
+    [currentItems]="currentItems"
+    [itemPerPage]="itemPerPage"
+    [(currentpage)]="currentpage"
+    [totalItems]="totalItems"
+    [totalPage]="totalPage"
+    [extraHeaders]="extraHeaders"
+    (update)="update($event)"
+    (view)="view($event)"
+    (removeConfirm)="removeConfirm($event)"
+    (search)="search()"
+    [editable]="true"
+    [viewable]="true"
+    (print)="printUI($event)"
+  ></ng-table>
+</div>

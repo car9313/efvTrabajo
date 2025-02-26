@@ -1,0 +1,24 @@
+<div class="input-group">
+  <input [placeholder]="placeholder" [owlDateTime]="datetime" [selectMode]="selectMode" [min]="minDateMoment" [max]="maxDateMoment"
+         readonly class="form-control" [formControl]="dateMoment"
+         [ngClass]="{'form-control-closeable':reseteable}" (dateTimeChange)="changeDate($event)"
+         [owlDateTimeTrigger]="datetime" [name]="datepickerId">
+  <button *ngIf="reseteable" type="button" [disabled]="disabled" class="close close-dropdown" aria-label="Cerrar"
+          (click)="clearDate()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  <owl-date-time #datetime [pickerType]="pickerType" [startAt]="startAtMoment" [disabled]="disabled"></owl-date-time>
+  <div class="input-group-append">
+    <button class="btn btn-white" type="button" [owlDateTimeTrigger]="datetime">
+      <span class="fas fa-calendar-alt"></span></button>
+  </div>
+  <div class="invalid-feedback" *ngIf="dateMoment.invalid && dateMoment.errors['owlDateTimeMin']">
+    El campo debe se mayor a {{minDateMoment | date: 'medium'}}
+  </div>
+  <div class="invalid-feedback" *ngIf="dateMoment.invalid && dateMoment.errors['owlDateTimeMax']">
+    El campo debe ser inferior a {{maxDateMoment | date: 'medium'}}
+  </div>
+  <div class="invalid-feedback" *ngIf="dateMoment.invalid && dateMoment.errors['required']">
+    El campo es requerido
+  </div>
+</div>

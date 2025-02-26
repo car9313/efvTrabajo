@@ -1,0 +1,40 @@
+<div @fadeIn>
+  <form autocomplete="off" #efvForm="ngForm">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="cantidad" class="required">Cantidad de formas valiosas</label>
+          <input type="number" class="form-control" id="cantidad" required min="1" max="20000000"
+            [(ngModel)]="model.cantidad" name="cantidad" #cantidad="ngModel"
+            [ngClass]="{'is-invalid':!(cantidad.valid || cantidad.pristine)}">
+          <div class="invalid-feedback">
+            <div *ngIf="cantidad.errors?.required">El campo es requerido.</div>
+            <div *ngIf="cantidad.errors?.min">El valor insertado debe ser mayor que 0.</div>
+            <div *ngIf="cantidad.errors?.max">El valor insertado debe ser menor o igual a 20000000.</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>
+            <span class="invisible">Generar</span>
+          </label>
+          <div>
+            <button class="btn btn-primary" (click)="isSave()"
+              [disabled]="efvForm.form.invalid || efvForm.form.pristine">
+              Generar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="errors" class="row">
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>Error!</strong> {{errors}}.
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

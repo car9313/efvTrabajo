@@ -1,0 +1,145 @@
+:host {
+  box-shadow: 1px 1px 3px 0 rgba(0, 0, 0, .2), 2px 1px 1px 0 rgba(0, 0, 0, .14), 2px 2px 1px -1px rgba(0, 0, 0, .12);
+  background: #bf0000;
+  display: block;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  height: 100vh;
+  padding-bottom: 1rem;
+  box-sizing: border-box;
+}
+
+.title-sidebar {
+  background: #bf0000;
+  padding: .5rem 15px;
+  color: #fff;
+  .brand {
+    cursor: pointer;
+    height: 2.125rem;
+    img {
+      height: 2.125rem;
+    }
+  }
+  .close {
+    color: #fff;
+    opacity: 1;
+    right: 10px;
+    top: 3px;
+    position: absolute;
+    cursor: pointer;
+  }
+}
+
+.sidebar-menu {
+  height: calc(100vh - 6rem);
+  overflow-y: auto;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  background-color: #c93030;
+  box-shadow: inset 0 0 3px 0 rgba(0, 0, 0, .2);
+  display: block;
+  > .li {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    display: block;
+
+    > a {
+      padding: 12px 5px 12px 10px;
+      display: block;
+      border-left: 7px solid transparent;
+      color: #b8c7ce;
+
+      &:hover {
+        cursor: pointer;
+      }
+
+      &:hover,
+      &.active {
+          color: #fff;
+          background: #a80e0e;
+          border-left-color: #ffc200;
+      }
+    }
+
+
+
+    > .treeview-menu {
+      margin: 0 1px;
+      background: #400000;
+    }
+
+    .label, .badge {
+      margin-top: 3px;
+      margin-right: 5px;
+    }
+  }
+
+  .li {
+    > a > .fa-angle-left,
+    > a > .fa-angle-down {
+      width: auto;
+      height: auto;
+      padding: 0;
+      margin-right: 10px;
+      margin-top: 3px;
+    }
+  }
+
+  a {
+    color: #b8c7ce;
+    text-decoration: none;
+  }
+
+  .treeview-menu {
+    margin: 0;
+    padding: 0 0 0 5px;
+
+    .treeview-menu {
+      padding-left: 20px;
+      .li {
+        > a {
+          padding: 5px 5px 5px 0;
+          display: block;
+          font-size: 14px;
+          border-left-width: 0;
+          color: #8aa4af;
+          &:hover,
+          &.active {
+              color: #fff;
+              background: transparent;
+              border-left-color: transparent;
+              cursor: pointer;
+          }
+        }
+
+      }
+
+    }
+
+    > .li {
+      margin: 0;
+      display: block;
+
+      > a {
+        padding: 5px 5px 5px 10px;
+        display: block;
+        font-size: 14px;
+        color: #8aa4af;
+
+        &:hover,
+        &.active {
+            color: #fff;
+            cursor: pointer;
+        }
+
+        > .fa-angle-left,
+        > .fa-angle-down {
+          width: auto;
+        }
+      }
+    }
+  }
+}
+

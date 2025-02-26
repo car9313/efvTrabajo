@@ -1,0 +1,18 @@
+<div class="card mb-3 collapse-row" id="collapse_header{{id}}" (click)="collapse()">
+  <div class="card-header collapse-header">
+    <div class="row ">
+      <div class="col-11 ">
+        <ng-content select=".collapse-header"></ng-content>
+      </div>
+      <div class="col-1">
+        <span class=" fa " [ngClass]="{'fa-caret-down': !collapsed, 'fa-caret-up': collapsed}"></span>
+      </div>
+    </div>
+  </div>
+
+  <div id="collapse_i{{id}}" class="collapse" [ngClass]="{'show': (collapsed)}">
+    <div class="card-body">
+      <ng-content select=".collapse-body"></ng-content>
+    </div>
+  </div>
+</div>

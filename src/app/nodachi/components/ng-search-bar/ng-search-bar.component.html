@@ -1,0 +1,38 @@
+<div class="top-list">
+  <form autocomplete="off" (ngSubmit)="onSubmit($event)" class="form-inline">
+    <div *ngIf="!hidePerPage" class="float-left nav-left">
+      <ng-perpage name="perpage" [(ngModel)]="itemPerPage"> </ng-perpage>
+    </div>
+    <div class="nav-actions prueba">
+      <ng-content></ng-content>
+      <!-- <div class="items pr-2" *ngIf="!hideSearch"> -->
+      <input
+        type="search"
+        class="form-control"
+        placeholder="Buscar..."
+        name="param_search"
+        [(ngModel)]="find"
+      />
+      <!--  </div> -->
+      <!-- <div class="items"> -->
+      <button
+        type="button"
+        class="btn btn-danger clean"
+        title="Limpiar filtros aplicados"
+        *ngIf="hasFilters"
+        (click)="onReset($event)"
+      >
+        <span class="fa fa-times"></span>
+      </button>
+      <button type="submit" class="btn btn-white" [disabled]="disableSearch">
+        <span class="fa fa-search"></span>
+      </button>
+      <!--    </div> -->
+    </div>
+  </form>
+  <div *ngIf="!hideCreate && permissions.create" class="button-add">
+    <a (click)="onCreate($event)"
+      >Agregar Nuevo <span class="fa fa-plus-circle ml-2 fa-2x"></span
+    ></a>
+  </div>
+</div>

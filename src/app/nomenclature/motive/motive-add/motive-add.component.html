@@ -1,0 +1,24 @@
+<div @fadeIn>
+  <form autocomplete="off" #appForm="ngForm">
+    <div class="form-group">
+      <label for="description" class="required">Motivo de Rechazo</label>
+      <input type="text" class="form-control" id="description" #description="ngModel" required maxlength="100"
+        [(ngModel)]="model.description" name="description" #code="ngModel"
+        [ngClass]="{'is-invalid':!(code.valid  || code.pristine)}">
+      <div class="invalid-feedback">
+        <div *ngIf="description.errors?.maxlength">El campo no debe exeder los 100 caracteres.</div>
+        <div *ngIf="description.errors?.required">El campo es requerido.</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="required">Tipo de Solicitud</label>
+      <div class="clearfix"></div>
+      <ng-choosen required [items]="tipoSolicitud" [(ngModel)]="model.tipo" [options]="choosenOptsTipo" name="tipo"
+        id="tipo"></ng-choosen>
+
+    </div>
+    <ng-fbutton (save)="save()" (saveNew)="saveNew()" (cancel)="goList()"
+      [disabled]="appForm.form.invalid || appForm.form.pristine">
+    </ng-fbutton>
+  </form>
+</div>

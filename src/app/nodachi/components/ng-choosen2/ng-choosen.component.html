@@ -1,0 +1,11 @@
+<div class="loading mx-auto text-center w-100 position-absolute" *ngIf="loading">
+  <span class="fa fa-2x fa-spinner fa-spin fa-fw"></span>
+  <span class="sr-only">Cargando...</span>
+</div>
+<select #selectchoosen [disabled]="disabled" [id]="chosenName" [name]="chosenName" [ngClass]="options.elClass"
+        [(ngModel)]="value" [attr.data-placeholder]="options.placeHolder">
+  <option value></option>
+  <option *ngFor="let item of _items ; trackBy: trackById;" [value]="item.id" [disabled]="item.disable">
+    {{item.text}}
+  </option>
+</select>

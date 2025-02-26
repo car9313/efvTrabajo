@@ -1,0 +1,73 @@
+
+.inline-hidden-hover .inline-hidden-field {
+  border-color: #ced4da;
+  background-color: #fff;
+  background-clip: padding-box;
+  border-radius: .25rem;
+  transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+  text-align: right;
+}
+
+.inline-hidden-field {
+  display: block;
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #495057;
+  border: 1px solid transparent;
+  margin-right: 45px;
+  width: auto;
+  min-height: 38px;
+  box-sizing: border-box;
+  text-align: right;
+}
+
+.action-view {
+  display: none;
+}
+
+.action {
+  position: absolute;
+  top: 4px;
+  right: 20px;
+}
+
+.inline-hidden-hover .action-view {
+  display: initial;
+}
+
+.inline-field {
+  margin-right: 80px;
+  width: auto;
+}
+.inline-field .form-control {
+  text-align: right;
+}
+
+.inline-update-btn {
+  margin-right: 5px;
+}
+
+label .tooltiptext {
+  visibility: hidden;
+  max-width: 300px;
+  background-color: black;
+  color: #fff;
+  text-align: left;
+  border-radius: 6px;
+  padding: 5px;
+  min-width: 150px;
+  // Position the tooltip
+  position: absolute;
+  z-index: 1;
+}
+
+label:hover .tooltiptext {
+  visibility: visible;
+}
+
+.formula {
+  font-size: small;
+  font-style: italic;
+  white-space: pre;
+}

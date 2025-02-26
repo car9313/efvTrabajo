@@ -1,0 +1,160 @@
+.sidebar-menu-host {
+  box-shadow: 1px 1px 3px 0 rgba(0, 0, 0, .2), 2px 1px 1px 0 rgba(0, 0, 0, .14), 2px 2px 1px -1px rgba(0, 0, 0, .12);
+  //background: $sidebar-menu-host-bg;
+  background-image: linear-gradient($sidebar-menu-host-bg 15%,$sidebar-menu-bg 55%);
+  display: block;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  height: 100vh;
+  padding-bottom: 1rem;
+  box-sizing: border-box;
+}
+.sidebar-search{
+  background-color: transparent;
+  border-radius: 0.8rem;
+  border-color: $treeview-menu-bg;
+  color: $treeview-menu-bg;
+}
+.sidebar-search:active{
+  background-color: $treeview-menu-bg;
+}
+.sidebar-search::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: $treeview-menu-bg;
+  opacity: 1; /* Firefox */
+}
+
+.title-sidebar {
+  padding: .5rem 15px;
+  .brand {
+    cursor: pointer;
+    height: 5.125rem;
+    img {
+      height: 5.125rem;
+    }
+  }
+  .close {
+    color: $white;
+    opacity: 1;
+    right: 10px;
+    top: 3px;
+    position: absolute;
+    cursor: pointer;
+  }
+}
+
+.sidebar-menu {
+  height: calc(100vh - 6rem);
+  overflow-y: auto;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+//  background-color: $sidebar-menu-bg;
+  box-shadow: inset 0 0 3px 0 rgba(0, 0, 0, .2);
+  display: block;
+  > .li {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    display: block;
+
+    > a {
+      padding: 12px 5px 12px 10px;
+      display: block;
+      border-left: 7px solid transparent;
+      color: $white;
+
+      &:hover {
+        cursor: pointer;
+      }
+
+      &:hover,
+      &.active {
+          color: $white;
+      }
+    }
+
+
+
+    > .treeview-menu {
+      margin: 0 1px;
+      background: $input-disabled-bg;
+    }
+
+    .label, .badge {
+      margin-top: 3px;
+      margin-right: 5px;
+    }
+  }
+
+  .li {
+    > a > .fa-angle-left,
+    > a > .fa-angle-down {
+      width: auto;
+      height: auto;
+      padding: 0;
+      margin-right: 10px;
+      margin-top: 3px;
+    }
+  }
+
+  a {
+    color: #b8c7ce;
+    text-decoration: none;
+  }
+
+  .treeview-menu {
+    margin: 0;
+
+    .treeview-menu {
+      padding-left: 20px;
+      .li {
+        > a {
+          padding: 5px 5px 5px 0;
+          display: block;
+          font-size: 14px;
+          border-left-width: 0;
+          color: #8aa4af;
+          &:hover,
+          &.active {
+              color: $white;
+              background: transparent;
+              border-left-color: transparent;
+              cursor: pointer;
+
+          }
+        }
+
+      }
+
+    }
+
+    > .li {
+      margin: 0;
+      display: block;
+
+      > a {
+        padding: 5px 5px 5px 10px;
+        display: block;
+        font-size: 14px;
+        color: $black;
+
+        &:hover,
+        &.active {
+            color: $sidebar-menu-host-bg;
+            cursor: pointer;
+
+        }
+        &:hover{
+          background-color: $treeview-menu-bg;
+        }
+
+        > .fa-angle-left,
+        > .fa-angle-down {
+          width: auto;
+        }
+      }
+
+
+    }
+  }
+}

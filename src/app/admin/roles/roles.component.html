@@ -1,0 +1,71 @@
+<div @fadeIn class="roles-admin">
+  <ng-search-bar [permissions]="permissions" [(itemPerPage)]="itemPerPage" [(find)]="param_search"
+    (search)="search(true)" (create)="createModal()" [hasFilters]="hasFilters()" (resetFilters)="resetFilters()"
+    (create)="createModal()">
+  </ng-search-bar>
+  <ng-table [rows]="objects" [headers]="headers" [permissions]="permissions" [currentItems]="currentItems"
+    [itemPerPage]="itemPerPage" [(currentpage)]="currentpage" [totalItems]="totalItems" [totalPage]="totalPage"
+    (update)="updateModal($event)" (removeConfirm)="removeConfirm($event)" (search)="search()"
+    (print)="printUI($event)"></ng-table>
+
+
+
+
+
+  <ng-modal action="add" tabTitle="Nuevo Rol" (close)="rolFormAdd.reset()">
+    <form autocomplete="off" (ngSubmit)="create(model);rolFormAdd.reset()" #rolFormAdd="ngForm">
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+              <label for="name" class="required">
+                Nombre
+              </label>
+              <input type="text" class="form-control" id="name" required [(ngModel)]="model.name" name="name"
+                #name="ngModel" [ngClass]="{'is-invalid':!(name.valid  || name.pristine)}">
+              <div class="invalid-feedback">El campo es requerido.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary" [disabled]="rolFormAdd.form.invalid || rolFormAdd.form.pristine">
+          Guardar
+        </button>
+      </div>
+    </form>
+  </ng-modal>
+
+
+
+
+
+  <ng-modal action="update" tabTitle="Modificar Rol" (close)="rolForm.reset()">
+    <form (ngSubmit)="update(model);rolForm.reset()" #rolForm="ngForm">
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+              <label for="name_up" class="required">
+                Nombre
+              </label>
+              <input type="text" class="form-control" id="name_up" required [(ngModel)]="model.name" name="name"
+                #nameedit="ngModel" [ngClass]="{'is-invalid':!(nameedit.valid  || nameedit.pristine)}">
+              <div class="invalid-feedback">El campo es requerido.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary" [disabled]="rolForm.form.invalid || rolForm.form.pristine">
+          Guardar
+        </button>
+      </div>
+    </form>
+  </ng-modal>
+
+
+
+
+
+</div>

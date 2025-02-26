@@ -1,0 +1,30 @@
+<!--<button
+  class="btn btn-primary"
+  type="button"
+  (click)="onPrint('pdf')"
+>
+
+  <span class="fa fa-file-pdf"></span>
+  Imprimir
+</button>
+
+<!--<button
+  class="btn btn-primary"
+  type="button"
+  (click)="onPrintExcel()"
+>
+
+  <span class="fa fa-file-pdf"></span>
+  ImprimirExcel
+</button>-->
+<div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+  <div class="btn-group" role="group">
+  <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Imprimir
+    </button>
+    <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+     <a style="cursor: pointer" class="dropdown-item" (click)="onPrint('pdf')"> <span class="fa fa-file-pdf"></span>&nbsp;PDF</a>
+      <a style="cursor: pointer" class="dropdown-item" (click)="onPrint('excel')"> <span class="fa fa-file-excel"></span>&nbsp;Excel</a>
+    </div>
+  </div>
+</div>

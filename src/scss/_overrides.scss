@@ -1,0 +1,123 @@
+.table th, .table td {
+  vertical-align: middle;
+}
+
+.btn:hover {
+  cursor: pointer;
+}
+
+body {
+  .cdk-overlay-container {
+    z-index: 1060;
+  }
+}
+
+caption {
+  caption-side: top;
+  color: $body-color;
+}
+
+.table .btn-warning {
+  color: $white;
+}
+
+a.btn-link > .fa-angle-collapse,
+button.btn-link > .fa-angle-collapse {
+  font-size: 1.5em;
+}
+
+a.btn-link.collapsed > .fa-angle-collapse:before,
+button.btn-link.collapsed > .fa-angle-collapse:before {
+  content: '\f107';
+}
+
+a.btn-link > .fa-angle-collapse:before,
+button.btn-link > .fa-angle-collapse:before {
+  content: "\f106";
+}
+
+.breadcrumb {
+  padding: 0;
+  margin-bottom: 0;
+}
+
+.input-group {
+
+  > .ng-choosen {
+    position: relative; // For focus state's z-index
+    flex: 1 1 auto;
+    // Add width 1% and flex-basis auto to ensure that button will not wrap out
+    // the column. Applies to IE Edge+ and Firefox. Chrome does not require this.
+    width: 1%;
+    margin-bottom: 0;
+
+    + .form-control,
+    + .custom-select,
+    + .custom-file {
+      margin-left: -$input-border-width;
+    }
+    select.form-control + .chosen-container.chosen-container-single .chosen-single {
+      &:not(:last-child) {
+        @include border-right-radius(0);
+      }
+
+      &:not(:first-child) {
+        @include border-left-radius(0);
+      }
+    }
+  }
+}
+
+/*** TABS ***/
+.nav-tabs {
+  .nav-link {
+    background-color: $light;
+    border-color: $nav-tabs-border-color $nav-tabs-border-color $light;
+    &.active {
+      background-color: $body-bg;
+      border-bottom: 3px solid $primary;
+      padding-bottom: calc(.5rem - 3px);
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .nav-tabs {
+    overflow: hidden;
+    position: relative;
+
+    &::after {
+      content: '\2630';
+      position: absolute;
+      top: 8px;
+      right: 15px;
+      z-index: 2;
+      pointer-events: none;
+
+    }
+  }
+  .nav-tabs.open {
+    .nav-link {
+      position: relative;
+      &.active {
+        border: 1px solid $nav-tabs-border-color;
+      }
+    }
+  }
+  .nav-item {
+    width: 100%;
+    .nav-link {
+      padding: .5rem;
+      position: absolute;
+      border: 1px solid $nav-tabs-border-color;
+      //background-color: #f8f8f8;
+      &.active {
+        position: relative;
+        border: 0;
+        z-index: 1;
+      }
+    }
+  }
+}
+
+/*** TABS ***/

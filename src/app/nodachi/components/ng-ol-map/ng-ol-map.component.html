@@ -1,0 +1,38 @@
+<div class='olmap shadow' [attr.id]="target"></div>
+<div #popup>
+  <div class="popover bs-popover-top">
+    <div class="arrow">
+    </div>
+    <h3 class="popover-header bg-{{style_class}} text-white">
+      {{title}}
+      <button aria-label="Cerrar" class="close bg-{{style_class}} text-white" (click)="close()" type="button">
+        <span aria-hidden="true">×</span>
+      </button>
+    </h3>
+    <div class="popover-body list-inline">
+      <ng-template [cdkPortalOutlet]="popover"></ng-template>
+    </div>
+  </div>
+</div>
+
+<div #popup_delete>
+  <div class="popover bs-popover-top">
+    <div class="arrow">
+    </div>
+    <h3 class="popover-header bg-{{style_class}} text-white">
+      {{title}}<span class="invisible">M</span>
+      <button aria-label="Cerrar" class="close bg-{{style_class}} text-white" (click)="close()" type="button">
+        <span aria-hidden="true">×</span>
+      </button>
+    </h3>
+
+    <div class="popover-body">
+      <div *ngFor="let item of description">
+        {{item}}
+      </div>
+      <button aria-label="Eliminar" class="btn btn-{{style_class}}" (click)="delete_feature()" type="button">
+        Eliminar
+      </button>
+    </div>
+  </div>
+</div>

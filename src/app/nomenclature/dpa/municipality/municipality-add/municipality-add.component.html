@@ -1,0 +1,38 @@
+<div @fadeIn>
+  <form autocomplete="off" #appForm="ngForm">
+    <div class="form-group">
+      <label for="code_mun" class="required">Código</label>
+      <input type="text" class="form-control" id="code_mun" required [(ngModel)]="model.code" name="code_mun">
+      <div class="invalid-feedback">
+        El campo es requerido.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="desc_C" class="required">Acrónimo</label>
+      <input type="text" class="form-control" id="desc_C" required [(ngModel)]="model.desc_short" name="desc_C">
+      <div class="invalid-feedback">
+        El campo es requerido.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="desc_L" class="required">Nombre</label>
+      <input type="text" class="form-control" id="desc_L" required [(ngModel)]="model.desc_long" name="desc_L">
+      <div class="invalid-feedback">
+        El campo es requerido.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="required">Provincia</label>
+      <div class="clearfix"></div>
+      <ng-choosen required [items]="provinces" [(ngModel)]="model.province_id" name="province_id"
+        id="province_id"></ng-choosen>
+
+    </div>
+    <ng-fbutton (save)="save()" (saveNew)="saveNew()" (cancel)="goList()"
+      [disabled]="appForm.form.invalid || appForm.form.pristine">
+    </ng-fbutton>
+  </form>
+</div>

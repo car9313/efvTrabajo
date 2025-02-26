@@ -1,0 +1,49 @@
+<div class="login-page ">
+  <img alt="" class="background img-fluid w-100" src="assets/bg.png">
+  <div class="login-page-container">
+    <div class="login-page-content">
+      <img alt="logo" class="img-fluid mx-auto d-block mb-4" src="assets/logo.png">
+      <h2 class="title-login">Generador de Formas valiosas</h2>
+      <div class="testbox">
+        <form autocomplete="off" (ngSubmit)="loginUser()" #loginForm="ngForm"
+          class="p-2 rounded login-box text-center mb-4">
+          <div class="form-group">
+            <h2>Inicio de Sesión</h2>
+          </div>
+          <div class="p-2 rounded bg-login">
+            <div class="form-label-group">
+              <input class="form-control text-normal" type="text" id="username" required placeholder="Usuario"
+                [(ngModel)]="userLogin.username" name="username" />
+              <label class="non-select" for="username">Usuario</label>
+            </div>
+            <div class="form-label-group">
+              <input class="form-control" placeholder="Contraseña" type="password" id="password" required
+                [(ngModel)]="userLogin.password" name="password" />
+              <label class="non-select" for="password">Contraseña</label>
+            </div>
+            <button *ngIf="!authenticating" type="submit"
+              class="btn btn-primary font-weight-bold active form-label-group"
+              [disabled]="!loginForm.form.valid">Aceptar
+            </button>
+            <button *ngIf="authenticating" type="submit" class="btn btn-primary font-weight-bold form-label-group"
+              disabled>Autenticando, espere... <span class="fa fa-circle-notch fa-spin"></span>
+            </button>
+            <div class="form-group">
+              <p class="text-center help">Para ingresar en este sitio debe escribir un usuario y una contraseña
+                autorizados
+                previamente.</p>
+            </div>
+
+
+          </div>
+        </form>
+      </div>
+
+      <!--<ul class="list-inline text-center">-->
+      <!--<li class="list-inline-item" *ngFor="let name of imgList">-->
+      <!--<img alt="modulo" src="assets/{{name}}.png">-->
+      <!--</li>-->
+      <!--</ul>-->
+    </div>
+  </div>
+</div>

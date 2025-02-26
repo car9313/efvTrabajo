@@ -1,0 +1,165 @@
+<div class="table-responsive margin-bottom-20" *ngIf="rows && rows.length>0">
+  <div class="opciones-multiples">
+    <div *ngIf="(multipleSelect && permissions.create)" class="button-add text-danger" (click)="RejectMultiple()">
+      <a class="text-danger">Eliminar todas
+        <span class="fa fa-trash"></span>
+      </a>
+    </div>
+  </div>
+  <div id="htmlData">
+    <table class="table table-hover" [ngClass]="tableClass" role="grid">
+      <thead>
+        <tr>
+          <th *ngIf="multipleSelect">
+            <button class="btn btn-lg btn-link" (click)="selectAll()" name="selected" type="button">
+              <span class="fa {{selectIcon}} sizeCheck"
+                [ngClass]="{'text-primary':checkAllSelect(),'text-secondary opacityCheck':!checkAllSelect()}"></span>
+            </button>
+          </th>
+          <th *ngFor="let column of columns">{{ column.title }}</th>
+          <th *ngIf="extraHeaders.length>0"></th>
+          <ng-content select="[header]"></ng-content>
+          <th *ngIf="(permissions.delete || permissions.update || permissions.read)" class="text-right">
+            <!--  <button
+          *ngIf="showPrint"
+          class="btn btn-primary"
+          type="button"
+          (click)="onPrint()"
+        >
+          <span class="fa fa-file-pdf"></span>
+          Imprimir
+        </button> -->
+
+            <div class="btn-group" *ngIf="showPrint" role="group" aria-label="Button group with nested dropdown">
+              <div class="btn-group" role="group">
+                <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false">
+                  Imprimir
+                </button>
+                <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                  <a style="cursor: pointer" class="dropdown-item" (click)="onPrint('pdf')"> <span
+                      class="fa fa-file-pdf"></span>&nbsp;PDF</a>
+                  <a style="cursor: pointer" class="dropdown-item" (click)="onPrint('excel')"> <span
+                      class="fa fa-file-excel"></span>&nbsp;Excel</a>
+                </div>
+              </div>
+            </div>
+
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="let row of rows | paginate: { id:paginationId, itemsPerPage: itemPerPage, currentPage: currentpage, totalItems: totalItems };let i = index"
+          (click)="clickAction(rowConfig.clickAction,row,$event)" [ngClass]="exectFunc(rowConfig.class,row)">
+          <td *ngIf="(selecteable || multipleSelect)">
+            <button class="btn btn-lg btn-link" (click)="selectItem(row,i)" name="selected" type="button"
+              *ngIf="row.selectable!==false">
+              <span class="fa {{selectIcon}} sizeCheck"
+                [ngClass]="{'text-primary':row.selected,'text-secondary opacityCheck':!row.selected}"></span>
+            </button>
+          </td>
+          <td *ngFor="let column of columns">
+            <ng-template #row_text>
+              <span class="fa fa-check-circle text-success"
+                *ngIf="type(row[column.name]) === 'boolean' && row[column.name] === true">
+              </span>
+              <span [innerHTML]="getData(row,column.name) | keepHtml"
+                *ngIf="type(row[column.name]) !== 'boolean' && row[column.name] !== true && keepHtml.indexOf(column.name) > -1">
+              </span>
+              <span
+                *ngIf="type(row[column.name]) !== 'boolean' && row[column.name] !== true && keepHtml.indexOf(column.name) == -1">{{getData(row,column.name)}}</span>
+            </ng-template>
+            <span *ngIf="headerView.field==column.name;else row_text">
+              <ng-template [ngIf]="headerView.externo">
+                <a *ngIf="headerView.link" [routerLink]="getLink(row,headerView.link)">
+                  {{getData(row,column.name)}}
+                </a>
+                <button *ngIf="!headerView.link" class="btn btn-link"
+                  (click)="clickAction(headerView.clickAction,row,$event)">
+                  {{getData(row,column.name)}}
+                </button>
+              </ng-template>
+              <ng-template [ngIf]="!headerView.externo">
+                <a *ngIf="headerView.link" [routerLink]="getLink(row,headerView.link)">
+                  {{getData(row,column.name)}}
+                </a>
+                <button *ngIf="!headerView.link" class="btn btn-link"
+                  (click)="clickAction(headerView.clickAction,row,$event)">
+                  {{getData(row,column.name)}}
+                </button>
+              </ng-template>
+            </span>
+          </td>
+          <td *ngIf="extraHeaders.length>0">
+            <ng-template ngFor let-btn [ngForOf]="extraHeaders">
+              <ng-template [ngIf]="!(btn.externo ||btn.clickAction !=null)">
+                <a role="button" class="btn mr-2" [ngClass]="btn.class || 'btn-white'" [title]="btn.tooltip"
+                  [routerLink]="getPublicLink(row,btn.url, btn)" [attr.target]="btn.target"
+                  *ngIf="checkCondition(btn.condition,row)">
+                  <span aria-hidden="true" [ngClass]="exectFunc(btn.icon,row)"></span>
+                  {{btn.title}}
+                </a>
+              </ng-template>
+              <ng-template [ngIf]="btn.externo || btn.clickAction!=null">
+                <a role="button" class="btn mr-2" [ngClass]="btn.class || 'btn-white'" [title]="btn.tooltip"
+                  (click)="btn.clickAction!=null? clickAction(btn.clickAction,row,$event): true"
+                  [href]="getPublicLink(row,btn.url, btn)" [attr.target]="btn.target"
+                  *ngIf="checkCondition(btn.condition,row)">
+                  <span aria-hidden="true" [ngClass]="exectFunc(btn.icon,row)"></span>
+                  {{btn.title}}
+                </a>
+              </ng-template>
+            </ng-template>
+          </td>
+          <td *ngIf="(permissions.delete || permissions.update || permissions.read)" class="td-btn text-right"
+            colspan="5">
+            <button type="button" *ngIf="permissions.update&&editable" [disabled]="row.editable === false"
+              class="btn btn-white mr-2" (click)="OnUpdate(row)" title="Editar">
+              <span class="fa fa-edit"></span>
+            </button>
+            <button type="button" *ngIf="permissions.delete" [disabled]="row.deletable === false"
+              class="btn btn-white mr-2" (click)="OnRemoveConfirm(row)" title="Eliminar">
+              <span class="fa fa-trash"></span>
+            </button>
+            <button type="button" *ngIf="permissions.read&&viewable" class="btn btn-white" (click)="OnView(row)"
+              title="Detalles">
+              <span class="fa fa-list"></span>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="ng-pagination">
+    <pagination-controls [id]="paginationId" (pageChange)="pageChanged($event)" [previousLabel]="locale.previousLabel"
+      class="text-center" [nextLabel]="locale.nextLabel" [autoHide]="true"></pagination-controls>
+
+    <div class="ng-pagination-data" *ngIf="totalPage > 1">
+      <div *ngIf="currentpage == 1 && totalItems > 0">
+        Resultado
+        <strong>1</strong>
+        -
+        <strong>{{currentItems}}</strong>
+        de
+        <strong>{{totalItems}}</strong>
+      </div>
+      <div *ngIf="currentpage != 1 && totalItems > 0">
+        Resultado
+        <strong>{{(currentpage - 1) * itemPerPage + 1}}</strong>
+        -
+        <strong>
+          {{currentItems +
+          (currentpage -
+          1) * itemPerPage }}
+        </strong>
+        de
+        <strong>{{totalItems}}</strong>
+      </div>
+      <div *ngIf="totalItems == 0 && currentItems == 1"></div>
+      <div *ngIf="totalPage == 1"></div>
+    </div>
+  </div>
+</div>
+<div *ngIf="rows && rows.length==0" class="no-item">No se encontraron resultados</div>

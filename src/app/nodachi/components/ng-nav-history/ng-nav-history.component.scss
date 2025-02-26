@@ -1,0 +1,21 @@
+.badge-primary:before {
+  content: '';
+  background: #fff;
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  position: relative;
+  margin-right: 2px;
+}
+
+.close {
+  color: #fff;
+  font-size: 100%;
+  padding: 0 5px;
+  font-weight: 400;
+}
+
+.badge{
+  font-size: 15px;
+}

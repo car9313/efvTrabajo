@@ -1,0 +1,19 @@
+.button-check{
+  margin: 1.75rem 0.75rem;
+  color: #284700;
+  a{
+    &:hover{
+      cursor: pointer;
+    }
+    .fa{
+      font-size: 1.5rem
+    }
+  }
+
+}
+.actions__requests{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+

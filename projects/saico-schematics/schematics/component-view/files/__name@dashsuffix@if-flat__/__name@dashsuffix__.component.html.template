@@ -1,0 +1,11 @@
+<div @fadeIn>
+  <table class="table table-sm table-bordered">
+    <tbody>
+    <tr>
+      <td><%= dasherize(name) %></td>
+      <td>{{model.id}}</td>
+    </tr>
+    </tbody>
+  </table>
+  <ng-fbutton [showSaveNew]="false" [showSave]="false" (cancel)="goList()"></ng-fbutton>
+</div>

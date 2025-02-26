@@ -1,0 +1,138 @@
+<div @fadeIn>
+  <form autocomplete="off" #userForm="ngForm" equalsPassword>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="name" class="required">Nombre y Apellidos</label>
+          <input
+            type="text"
+            class="form-control"
+            id="name"
+            required
+            minlength="6"
+            [(ngModel)]="model.name"
+            name="name"
+            #name="ngModel"
+            [disabled]="model.emplantillamiento != null"
+          />
+          <div class="invalid-feedback">
+            <div *ngIf="name.errors?.minlength">
+              El campo Nombre y Apellidos requiere al menos 6 caracteres.
+            </div>
+            <div *ngIf="name.errors?.required">El campo es requerido.</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="username" class="required">Nombre de Usuario</label>
+          <input
+            type="text"
+            class="form-control"
+            id="username"
+            required
+            minlength="5"
+            [(ngModel)]="model.username"
+            name="username"
+            #username="ngModel"
+            [disabled]="model.emplantillamiento != null"
+          />
+          <div class="invalid-feedback">
+            <div *ngIf="username.errors?.minlength">
+              El campo Nombre de Usuario requiere al menos 5 caracteres.
+            </div>
+            <div *ngIf="username.errors?.required">El campo es requerido.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 form-group">
+        <label for="password" class="required">Contraseña</label>
+        <input
+          type="password"
+          class="form-control"
+          id="password"
+          required
+          [(ngModel)]="model.password"
+          [passwordStrength]="settings"
+          name="password"
+          #password="ngModel"
+        />
+        <div
+          class="password-strength"
+          *ngIf="password.errors?.passwordStrength?.indicatorText"
+        >
+          <div class="password-strength-text" aria-live="assertive">
+            {{ password.errors?.passwordStrength.indicatorText }}
+          </div>
+          <div class="password-strength-title">Fortaleza de la contraseña:</div>
+          <div class="password-indicator">
+            <div
+              [class]="
+                'indicator ' +
+                'indicator-' +
+                password.errors?.passwordStrength?.strengthText
+              "
+              [style.width]="password.errors?.passwordStrength.strength + '%'"
+            ></div>
+          </div>
+
+          <div
+            class="password-suggestions text-danger description"
+            *ngIf="password.errors?.passwordStrength?.messages.length > 0"
+          >
+            Su contraseña debe cumplir:
+            <ul>
+              <li
+                *ngFor="
+                  let mensaje of password.errors?.passwordStrength?.messages
+                "
+              >
+                {{ mensaje }}
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Roles:</label>
+          <ng-choosen
+            required
+            [items]="roles"
+            [options]="opt_rol"
+            [(ngModel)]="model.role_ids"
+            id="role_ids"
+            name="role_ids"
+          ></ng-choosen>
+        </div>
+      </div>
+      <div class="col-md-6 form-group">
+        <label for="password_confirmation" class="required"
+          >Confirmar Contraseña</label
+        >
+        <input
+          type="password"
+          class="form-control"
+          id="password_confirmation"
+          [(ngModel)]="model.password_confirmation"
+          name="password_confirmation"
+          #password_confirmation="ngModel"
+          [disabled]="model.password == ''"
+        />
+        <div
+          class="invalid-feedback"
+          [ngClass]="{ 'd-block': userForm.errors?.equalsPassword }"
+        >
+          Las contraseñas no coinciden.
+        </div>
+      </div>
+    </div>
+    <ng-fbutton
+      (save)="save()"
+      (saveNew)="saveNew()"
+      (cancel)="goList()"
+      [disabled]="userForm.form.invalid || userForm.form.pristine"
+    ></ng-fbutton>
+  </form>
+</div>

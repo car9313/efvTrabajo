@@ -1,0 +1,54 @@
+a {
+  color: #6c757d;
+  // color: #284700;
+  text-decoration: none;
+  background-color: transparent;
+  &:hover {
+    background-color: #bee682;
+  }
+  .text-green {
+    color: #284700;
+  }
+}
+
+button {
+  color: #284700;
+  &:hover,
+  &:active {
+    background-color: #bee682;
+  }
+}
+
+.banner-work-satation {
+  padding: 0 10%;
+  font-size: 80%;
+  a:hover {
+    background-color: transparent;
+  }
+  span {
+    color: #6c757d;
+    font-size: 30px;
+
+  }
+  &:hover {
+    background-color: transparent;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .banner-work-satation {
+    padding: 0 5%;
+  }
+}
+.banner-title{
+  .btn.menu-nav{
+    border: 0;
+    color: white;
+    background-color: #bee682;
+    border-radius: 100%;
+    &:hover{
+      color: black;
+    }
+  }
+}
+

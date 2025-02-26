@@ -1,0 +1,40 @@
+<div @fadeIn>
+  <table class="table table-bordered">
+    <tbody>
+      <tr>
+        <th>Id solicitud</th>
+        <td>{{model.id_solicitud}}</td>
+      </tr>
+      <tr>
+        <th>Id segmento</th>
+        <td>{{model.id_segmento}}</td>
+      </tr>
+      <!-- <tr>
+      <th>Fecha Creación</th>
+      <td>{{model.fecha_creado}}</td>
+    </tr>-->
+      <tr>
+        <th>Cantidad de eFV</th>
+        <td>{{model.cantidad}}</td>
+      </tr>
+      <tr>
+        <th>Estado</th>
+        <td>{{model.estado}}</td>
+      </tr>
+      <!-- <tr>
+      <th>Fecha Reenvio</th>
+      <td>{{model.fecha_reenvio}}</td>
+    </tr>
+    <tr>
+      <th>Comprobación</th>
+      <td>{{model.comprobacion}}</td>
+    </tr>
+    <tr>
+      <th>Fecha Actualización</th>
+      <td>{{model.fecha_udp}}</td>
+    </tr>-->
+    </tbody>
+  </table>
+  <ng-fbutton (cancel)="goList()" [showSaveNew]="false" [showSave]="false"></ng-fbutton>
+
+</div>

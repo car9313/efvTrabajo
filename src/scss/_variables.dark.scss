@@ -1,0 +1,32 @@
+// Variables
+//
+// Variables should follow the `$component-state-property-size` formula for
+// consistent naming. Ex: $nav-link-disabled-color and $modal-content-box-shadow-xs.
+
+//
+// Color system
+//
+
+//$blue: #0275d8;
+//$red: #d9534f;
+//$yellow: #ffab40;
+//$green: #5cb85c;
+//$cyan: #5bc0de;
+
+$custom-file-text: (
+  es: '\f002',
+  en: '\f002',
+);
+
+$input-disabled-bg: #fff;
+$nav-link-padding-x: 1rem;
+
+@import '~bootstrap/scss/functions';
+@import 'variables-default.dark';
+
+$breadcrumb-bg: $light;
+
+$sidebar-menu-host-bg: darken($light,10);
+$sidebar-menu-bg: $light;
+$sidebar-menu-active-bg: darken($light,5);
+$treeview-menu-bg: darken($light,20);

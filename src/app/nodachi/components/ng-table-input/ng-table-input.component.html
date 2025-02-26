@@ -1,0 +1,29 @@
+<table class="table table-sm">
+  <thead>
+  <tr>
+    <th *ngFor="let column of columns">
+      {{ column.title }}
+    </th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let row of rows; let i = index">
+    <td *ngFor="let column of columns">
+      {{ getData(row,column.name) }}
+    </td>
+    <td>
+      <button type="button" class="btn btn-danger" (click)="removeItem(i)"><span class="fa fa-trash"></span>
+      </button>
+    </td>
+  </tr>
+  <tr>
+    <ng-content></ng-content>
+    <td>
+      <button type="button" (click)="addItem()" [disabled]="false" class="btn btn-white"><span
+        class="fa fa-plus"></span>
+      </button>
+    </td>
+  </tr>
+  </tbody>
+</table>

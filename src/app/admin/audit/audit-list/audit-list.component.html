@@ -1,0 +1,42 @@
+<div @fadeIn class="audit-admin">
+  <ng-search-bar [permissions]="permissions" [(itemPerPage)]="itemPerPage" [(find)]="param_search"
+    (search)="search(true)" [hideCreate]="true" [hasFilters]="hasFilters()" (resetFilters)="resetFilters()">
+    <div class="items col-md-3 padding-right-10">
+      <ng-datepicker [pickerType]="'calendar'" [(ngModel)]="fechaDesdeFilter" name="fechaDesde" [placeholder]="'Desde'"
+        [maxDate]="fechaHastaFilter" #fechaDesde="ngModel" id="fechaDesde"></ng-datepicker>
+    </div>
+    <div class="items col-md-3 padding-right-10">
+      <ng-datepicker [pickerType]="'calendar'" [(ngModel)]="fechaHastaFilter" name="fechaHasta" [placeholder]="'Hasta'"
+        [minDate]="fechaDesdeFilter" #fechaHasta="ngModel" id="fechaHasta"></ng-datepicker>
+    </div>
+    <div class="items col-md-3 padding-right-10">
+      <ng-choosen [items]="actionTypes" [options]="choosenActionTypes" [(ngModel)]="actionTypeFilter"
+        name="action_type_filter" id="action_type_filter"></ng-choosen>
+    </div>
+  </ng-search-bar>
+
+  <!--  <div class="actions__restoreSystem">
+    <div class="items col-md-4 padding-right-10 divPadding">
+      <ng-choosen required [items]="errors" [options]="errorschoosenOpts" [(ngModel)]="actionErrorFilter"
+        name="errors_filter" id="errors_filter" [disabled]="!isDisableButtonRestaurarSistema">
+      </ng-choosen>
+
+
+    </div>
+
+    <div class="items col-md-3 padding-right-10 divPadding">
+      <button class="btn btn-danger" (click)="solicitudColgada()" [disabled]="actionErrorFilter==null">
+        Restaurar Sistema
+        <i class="fa fa-undo"></i>
+      </button>
+    </div>
+  </div> -->
+
+  <ng-table [rows]="objects" [headers]="headers" [headerView]="headerView" [permissions]="permissions"
+    [currentItems]="currentItems" [itemPerPage]="itemPerPage" [(currentpage)]="currentpage" [totalItems]="totalItems"
+    [totalPage]="totalPage" [extraHeaders]="extraHeaders" [editable]="false" (update)="update($event)"
+    (view)="view($event)" (search)="search()" (print)="printUI($event)"></ng-table>
+
+
+
+</div>

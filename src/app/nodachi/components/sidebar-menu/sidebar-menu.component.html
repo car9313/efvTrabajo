@@ -1,0 +1,36 @@
+<div class="title-sidebar">
+  <div class="brand" routerLink=""><img alt="logo" src="assets/logo.png"/></div>
+  <button type="button" class="close" aria-label="Close" (click)="toggleMenu()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  <input type="text" class="form-control form-control-sm mt-2 sidebar-search"
+         id="menu_search"
+         [(ngModel)]="search"
+         autocomplete="off"
+         name="menu_search" (keyup)="Search()" placeholder="Buscar">
+
+</div>
+<cdk-tree [dataSource]="nestedDataSource" [treeControl]="nestedTreeControl" class="sidebar-menu" role="menu">
+  <cdk-nested-tree-node *cdkTreeNodeDef="let node" class="li">
+    <a routerLinkActive="active" [routerLink]="[node.link]" #rla="routerLinkActive"
+       role="menuitem">
+      <span *ngIf="rla.isActive" style="font-size: 0.5rem" class="fa-circle mr-1" [class.fas]="rla.isActive"></span>
+      <span *ngIf="!rla.isActive" class="mr-3"></span>
+      <span class="ml-2">{{node.name}}</span>
+    </a>
+  </cdk-nested-tree-node>
+  <cdk-nested-tree-node *cdkTreeNodeDef="let node; when: hasNestedChild" class="li">
+    <a (click)="toggleNode($event,node)" role="menuitem">
+      <!--<span class="fa-circle mr-1"-->
+            <!--[class.fas]="nestedTreeControl.isExpanded(node)" [class.far]="!nestedTreeControl.isExpanded(node)"-->
+            <!--[class.text-white]="nestedTreeControl.isExpanded(node)"></span>-->
+      <span [class.text-white]="nestedTreeControl.isExpanded(node)">{{node.name}}</span>
+      <span
+        class="fas {{nestedTreeControl.isExpanded(node) ? 'fa-angle-down text-white' : 'fa-angle-left'}} float-right">
+      </span>
+    </a>
+    <div [class.d-none]="!nestedTreeControl.isExpanded(node)" class="treeview-menu">
+      <ng-container cdkTreeNodeOutlet></ng-container>
+    </div>
+  </cdk-nested-tree-node>
+</cdk-tree>

@@ -1,0 +1,68 @@
+<div @fadeIn>
+  <div class="padding-top-20">
+    <table class="table table-bordered">
+      <tbody>
+        <tr>
+          <th style="width:'30%'">Identificador</th>
+          <td colspan="4">{{model.id}}</td>
+        </tr>
+        <tr>
+          <th>Fecha</th>
+          <td colspan="4">{{model.date_time}}</td>
+        </tr>
+        <tr>
+          <th>Usuario</th>
+          <td colspan="4">{{model.user_name}}</td>
+        </tr>
+        <tr>
+          <th>Identificador de usuario</th>
+          <td colspan="4">{{model.user_id}}</td>
+        </tr>
+        <tr>
+          <th>Nombre completo de usuario</th>
+          <td colspan="4">{{model.user_full_name}}</td>
+        </tr>
+        <tr>
+          <th>Dirección IP</th>
+          <td colspan="4">{{model.user_host_address}}</td>
+        </tr>
+        <tr>
+          <th>Acción</th>
+          <td colspan="4">{{model.action_type_description}}</td>
+        </tr>
+        <tr>
+          <th>Entidad afectada</th>
+          <td colspan="4">{{model.entity_type_friendly_name}}</td>
+        </tr>
+        <tr>
+          <th>Nombre de la entidad(funcional)</th>
+          <td colspan="4">{{model.entity_type}}</td>
+        </tr>
+        <tr>
+          <th>Tabla afectada</th>
+          <td colspan="4">{{model.table_name}}</td>
+        </tr>
+        <!-- <tr>
+        <th colspan="5"><h5>Datos de la entidad</h5></th>
+      </tr> -->
+        <tr>
+          <th>Identificador de entidad</th>
+          <td colspan="4">
+            <pre [innerHtml]="key_values | prettyjson:2"></pre>
+          </td>
+        </tr>
+        <tr>
+          <th>Datos</th>
+          <td colspan="4">
+            <pre [innerHtml]="new_values | prettyjson:2"></pre>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="row">
+      <div class="col padding-bottom-20">
+        <button class="btn btn-danger" (click)="goList()">Cancelar</button>
+      </div>
+    </div>
+  </div>
+</div>

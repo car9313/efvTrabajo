@@ -1,0 +1,21 @@
+<div @fadeIn>
+  <table class="table table-bordered">
+    <tbody>
+    <tr>
+      <th>Nombre de Usuario:</th>
+      <th>Roles:</th>
+    </tr>
+    <tr>
+      <td>{{model.username}}</td>
+      <td><span *ngFor="let rol of model.roles">{{rol.name}}, </span></td>
+    </tr>
+    <tr>
+      <th>Nombre y Apellidos:</th>
+    </tr>
+    <tr>
+      <td>{{model.name}}</td>
+    </tr>
+    </tbody>
+  </table>
+  <ng-fbutton [showSave]="false" [showSaveNew]="false" (cancel)="goList()"></ng-fbutton>
+</div>

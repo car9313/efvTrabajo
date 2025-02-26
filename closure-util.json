@@ -1,0 +1,5 @@
+{
+  "compiler_url": "http://172.22.1.11/closure/compiler/compiler-20171112.zip",
+  "library_url": "http://172.22.1.11/closure/library/v20170910.zip",
+  "log_level": "info"
+}

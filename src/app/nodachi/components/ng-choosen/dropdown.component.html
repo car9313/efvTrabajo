@@ -1,0 +1,72 @@
+<div class="loading mx-auto text-center w-100 position-absolute" *ngIf="loading">
+  <span class="fa fa-2x fa-spinner fa-spin fa-fw"></span>
+  <span class="sr-only">Cargando...</span>
+</div>
+<div class="dropdown" [ngClass]="options.containerClasses" [class.open]="isVisible">
+  <button type="button" class="dropdown-toggle" [ngClass]="options.buttonClasses" (click)="toggleDropdown()"
+    [disabled]="_disabled" (blur)="onModelTouched()">
+    <div class="float-left text-truncate" [title]="titleHover">{{ title }}</div>
+  </button>
+  <button type="button" class="close deselect" aria-label="Close" [disabled]="_disabled" (click)="clearModel($event)"
+    *ngIf="model.length > 0">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  <div #scroller *ngIf="isVisible" class="dropdown-menu"
+    (scroll)="options.isLazyLoad ? checkScrollPosition($event) : null"
+    (wheel)="options.stopScrollPropagation ? checkScrollPropagation($event, scroller) : null"
+    [class.float-right]="options.pullRight" [class.dropdown-menu-right]="options.pullRight"
+    [style.max-height]="options.maxHeight" style="display: block; height: auto; overflow-y: auto;">
+    <div class="px-2 search" *ngIf="options.enableSearch">
+      <div class="input-group input-group-sm">
+        <input type="text" class="form-control" placeholder="{{ texts.searchPlaceholder }}"
+          [formControl]="filterControl" aria-describedby="sizing-addon3">
+        <span class="input-group-append" *ngIf="filterControl.value.length > 0">
+          <button class="btn btn-default btn-secondary" type="button" (click)="clearSearch($event)"><span
+              class="fa fa-times"></span></button>
+        </span>
+      </div>
+    </div>
+    <div class="dropdown-divider divider" *ngIf="options.enableSearch"></div>
+    <button type="button" (click)="checkAll()" *ngIf="options.showCheckAll && !disabledSelection"
+      class="dropdown-item text-primary">
+      <span class="fa fa-check"></span>
+      {{ texts.checkAll }}
+    </button>
+    <button type="button" class="dropdown-item text-danger" (click)="uncheckAll()"
+      *ngIf="options.showUncheckAll && !disabledSelection">
+      <span class="fa fa-times"></span>
+      {{ texts.uncheckAll }}
+    </button>
+    <div *ngIf="options.showCheckAll || options.showUncheckAll" class="dropdown-divider divider"></div>
+    <span *ngIf="!renderItems" class="dropdown-item-text">{{ texts.searchNoRenderText }}</span>
+    <span *ngIf="renderItems && !renderFilteredOptions.length" class="dropdown-item-text">{{ texts.searchEmptyResult }}
+    </span>
+    <ng-container *ngFor="let option of renderFilteredOptions">
+      <ng-container *ngIf="!option.isLabel">
+        <a href="javascript:" role="menuitem" tabindex="-1"
+          [style.padding-left]="this.parents.length>0&&this.parents.indexOf(option.valueField)<0&&'30px'"
+          [ngStyle]="getItemStyleSelectionDisabled()" class="dropdown-item" [ngClass]="option.classes"
+          (click)="setSelected($event, option)" [class.disabled]="option.disable">
+
+          <ng-container *ngIf="options.selectionLimit!==1" [ngSwitch]="options.checkedStyle">
+            <input *ngSwitchCase="'checkboxes'" type="checkbox" [checked]="isSelected(option)"
+              (click)="preventCheckboxCheck($event, option)" [disabled]="isCheckboxDisabled()"
+              [ngStyle]="getItemStyleSelectionDisabled()" />
+            <span *ngSwitchCase="'fontawesome'" style="width: 16px;display: inline-block;">
+              <span *ngIf="isSelected(option)" class="far fa-check-square" aria-hidden="true"></span>
+              <span *ngIf="!isSelected(option)" class="far fa-square" aria-hidden="true"></span>
+            </span>
+          </ng-container>
+
+          <span [ngClass]="options.itemClasses"
+            [style.font-weight]="this.parents.indexOf(option.valueField)>=0?'bold':'normal'">
+            {{ option.textField }}
+          </span>
+        </a>
+      </ng-container>
+      <ng-container *ngIf="option.isLabel">
+        <span style="overflow: hidden" class="dropdown-header" [ngClass]="option.classes">{{ option.textField }}</span>
+      </ng-container>
+    </ng-container>
+  </div>
+</div>

@@ -1,0 +1,18 @@
+<div class="form-group-btn">
+  <button class="btn btn-primary" type="button" (click)="clickSave()" [disabled]="disabled" *ngIf="showSave">
+    {{textSave}}
+  </button>
+  <button class="btn btn-primary" type="button" (click)="clickSaveNew()" [disabled]="disabled" *ngIf="showSaveNew">
+    {{textSaveAndNew}}
+  </button>
+  <button class="btn btn-danger" type="button" (click)="clickRemove()" *ngIf="showRemove">
+    {{textRemove}}
+  </button>
+  <button class="btn btn-danger" type="button" (click)="clickCancel()" *ngIf="showCancel">
+    {{textCancel}}
+  </button>
+  <ng-content></ng-content>
+  <button class="btn btn-warning" type="button" (click)="clickOptional1()" *ngIf="showOptional1">
+    {{textOptional1}}
+  </button>
+</div>

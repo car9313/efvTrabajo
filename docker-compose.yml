@@ -1,0 +1,45 @@
+version: '2.1'
+services:
+  web:
+    build: .
+    image: saipci-ui:dev
+    volumes:
+      - .:/app
+      - modules:/app/node_modules
+    stdin_open: true
+    environment:
+      NODE_ENV: development
+    network_mode: "bridge"
+    command: /bin/ash -c "npm -d i && npm start"
+    ports:
+      - "4201:4201"
+  test:
+    build: .
+    volumes:
+      - .:/app
+      - modules:/app/node_modules
+    stdin_open: true
+    network_mode: "bridge"
+    image: saipci-ui:test
+    command: /bin/ash -c "npm -d i && npm test"
+    tty: false
+    environment:
+      NODE_ENV: test
+    ports:
+      - "9877:9876"
+  build:
+    build:
+      context: .
+      dockerfile: prod.Dockerfile
+    network_mode: "bridge"
+    ports:
+      - "4200:80"
+    image: saipci-ui:prod
+    volumes:
+      - .:/app
+    extra_hosts:
+      - "saipci.dts:172.22.1.20"
+      - "saipci-api.dts:172.22.1.20"
+volumes:
+  modules:
+    driver: local

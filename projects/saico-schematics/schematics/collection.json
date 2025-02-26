@@ -1,0 +1,44 @@
+{
+  "$schema": "../../../node_modules/@angular-devkit/schematics/collection-schema.json",
+  "schematics": {
+    "ng-add": {
+      "description": "Add my library to the project.",
+      "factory": "./ng-add/index#ngAdd"
+    },
+    "component-add": {
+      "aliases": [ "ca" ],
+      "description": "Generate a IComponentAdd.",
+      "factory": "./component-add",
+      "schema": "./component-add/schema.json"
+    },
+    "component-edit": {
+      "aliases": [ "ce" ],
+      "description": "Generate a IComponentEdit.",
+      "factory": "./component-edit",
+      "schema": "./component-edit/schema.json"
+    },
+    "component-list": {
+      "aliases": [ "cl" ],
+      "description": "Generate a IComponentList.",
+      "factory": "./component-list",
+      "schema": "./component-list/schema.json"
+    },
+    "component-view": {
+      "aliases": [ "cv" ],
+      "description": "Generate a IComponentView.",
+      "factory": "./component-view",
+      "schema": "./component-view/schema.json"
+    },
+    "core-service": {
+      "aliases": [ "cs" ],
+      "description": "Generate a CoreService child.",
+      "factory": "./core-service",
+      "schema": "./core-service/schema.json"
+    },
+    "crud": {
+      "description": "Generate a Crud",
+      "factory": "./crud",
+      "schema": "./crud/schema.json"
+    }
+  }
+}

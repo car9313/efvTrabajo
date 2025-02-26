@@ -1,0 +1,11 @@
+<div @fadeIn>
+    <table class="table table-bordered">
+      <tbody>
+        <tr>
+            <th>Motivo de Rechazo</th>
+            <td>{{model.description}}</td>
+        </tr>
+      </tbody>
+    </table>
+    <ng-fbutton (cancel)="goList()" [showSaveNew]="false" [showSave]="false"></ng-fbutton>
+</div>

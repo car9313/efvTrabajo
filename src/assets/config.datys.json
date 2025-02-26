@@ -1,0 +1,6 @@
+{
+  "serverApi": "http://dpm-agent-02.datys.cu:8080",
+  "papyrusApi": "http://cluster-doc-web1.datys.cu:8011/papyrus",
+  "openLSServer": "http://geoidesoi.datys.cu:8080/geoserver/OpenLSServer",
+  "geoServerUrl": "http://geoidesoi.datys.cu:8080/geoserver/idesoi/ows"
+}

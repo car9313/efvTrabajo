@@ -1,0 +1,77 @@
+<div @fadeIn>
+  <table class="table table-bordered">
+    <tbody>
+      <tr>
+        <th>Id solicitud</th>
+        <td>{{ model.id_solicitud }}</td>
+      </tr>
+      <tr>
+        <th>Cantidad</th>
+        <td>{{ model.cantidad }}</td>
+      </tr>
+      <tr>
+        <th>Estado solicitud</th>
+
+        <td>{{ model.estado_solicitd }}</td>
+      </tr>
+      <tr>
+        <th>Fecha solicitud</th>
+        <td>{{ model.fecha_solicitud }}</td>
+      </tr>
+      <tr>
+        <th>Tipo Visa</th>
+        <td>{{ model.tipo_visa }}</td>
+      </tr>
+      <tr>
+        <th>Entidad</th>
+        <td>{{ model.entidad }}</td>
+      </tr>
+
+      <!-- <tr>
+      <th>Usuario</th>
+      <td>{{model.usuario}}</td>
+    </tr>
+    <tr>
+      <th>Visa</th>
+      <td>{{model.tipo_visa}}</td>
+    </tr>
+    <tr>
+      <th>Ip</th>
+      <td>{{model.ip}}</td>
+    </tr>
+    <tr>
+      <th>Plataforma</th>
+      <td>{{model.plataforma}}</td>
+    </tr>
+    <tr>
+      <th>Estado Solicitud</th>
+      <td>{{model.estado_solicitd}}</td>
+    </tr>
+    <tr>
+      <th>Estado Proceso</th>
+      <td>{{model.estado_proceso}}</td>
+    </tr>
+    <tr>
+      <th>Fecha Solicitud</th>
+      <td>{{model.fecha_solicitud}}</td>
+    </tr>
+    <tr>
+      <th>Fecha Estado Procesao</th>
+      <td>{{model.fecha_estado_proceso}}</td>
+    </tr>
+    <tr>
+      <th>Fecha Estado Solicitud</th>
+      <td>{{model.fecha_estado_solicitud}}</td>
+    </tr>
+    <tr>
+      <th>Fecha Actualización</th>
+      <td>{{model.fecha_udp}}</td>
+    </tr>-->
+    </tbody>
+  </table>
+  <ng-fbutton
+    (cancel)="goList()"
+    [showSaveNew]="false"
+    [showSave]="false"
+  ></ng-fbutton>
+</div>

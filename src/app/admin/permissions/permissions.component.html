@@ -1,0 +1,52 @@
+<div @fadeIn>
+  <div class="row mb-4">
+    <div class="col-md-6">
+      <ng-choosen required [items]="roles" [options]="choosenOpts" [(ngModel)]="roleId" name="roleId"
+        id="roleId"></ng-choosen>
+    </div>
+  </div>
+  <div class="mb-3 shadow rounded-sm border-light border" *ngIf="roleId">
+    <div class="table-responsive-sm">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th></th>
+            <th *ngFor="let actionDesc of getAllActionsDesc()" class="text-center">
+              {{actionDesc}}
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-template ngFor let-category [ngForOf]="permissions_categories">
+            <tr class="header-collapse" (click)="collapse(category, $event)">
+              <td>
+                <h5>{{category.name}} <span class="fa fa-angle-right drop-icon"></span></h5>
+              </td>
+              <td *ngFor="let action of getAllActions()" class="text-center">
+                <input *ngIf="getCategoryPermissionsAvailable(category,action).length!=0" type="checkbox"
+                  class="permission-action-checkbox" value="{{category.name+'__'+action}}"
+                  [checked]="isCheckedAll(category,action)" (click)="checkAll(category,action,$event)" />
+              </td>
+            </tr>
+            <ng-template ngFor let-permission [ngForOf]="category.permissions">
+              <tr [ngClass]="{'collapsed-row':!category.expanded}">
+                <td class="permission">
+                  <strong>{{ permission.description }}</strong>
+                </td>
+                <td *ngFor="let action of getDefinedActions(permission)" class="text-center">
+                  <input *ngIf="action.value" type="checkbox" class="permission-action-checkbox"
+                    value="{{ permission.resource+'__'+action.name }}"
+                    [checked]="ispermission(permission.resource,roleId,action.name)" (click)="selectCheckbox($event)">
+                </td>
+              </tr>
+            </ng-template>
+          </ng-template>
+        </tbody>
+      </table>
+    </div>
+    <div class="nav-actions">
+      <button *ngIf="perm.update" type="button" class="btn btn-primary" (click)="addPermission()"> Guardar
+      </button>
+    </div>
+  </div>
+</div>

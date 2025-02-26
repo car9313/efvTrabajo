@@ -1,0 +1,300 @@
+<div @fadeIn>
+  <form autocomplete="off" (ngSubmit)="onSubmit()" #appForm="ngForm">
+    <div class="row">
+      <div class="col-md-12">
+        <fieldset>
+          <legend>Configuración general</legend>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="access_token_expire_time" class="required">
+                  Tiempo de validez de token de acceso(minutos)
+                </label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="access_token_expire_time"
+                  required
+                  [(ngModel)]="model.access_token_expire_time"
+                  name="access_token_expire_time"
+                  #access_token_expire_time="ngModel"
+                  [ngClass]="{
+                    'is-invalid': !(
+                      access_token_expire_time.valid ||
+                      access_token_expire_time.pristine
+                    )
+                  }"
+                  [pattern]="numberRegex"
+                  [min]="1"
+                />
+                <div class="invalid-feedback">
+                  <div *ngIf="access_token_expire_time.errors?.min">
+                    El valor del campo no pude ser menor que 1.
+                  </div>
+                  <div *ngIf="access_token_expire_time.errors?.required">
+                    El campo es requerido.
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="session_expire_time" class="required">
+                  Tiempo de inactividad de la sesión(minutos)
+                </label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="session_expire_time"
+                  required
+                  [(ngModel)]="model.session_expire_time"
+                  name="session_expire_time"
+                  #session_expire_time="ngModel"
+                  [ngClass]="{
+                    'is-invalid': !(
+                      session_expire_time.valid || session_expire_time.pristine
+                    )
+                  }"
+                  [pattern]="numberRegex"
+                  [max]="10"
+                  [min]="1"
+                />
+                <div class="invalid-feedback">
+                  <div *ngIf="session_expire_time.errors?.min">
+                    El valor del campo no pude ser menor que 1.
+                  </div>
+                  <div *ngIf="session_expire_time.errors?.max">
+                    El valor del campo no pude ser mayor que 10.
+                  </div>
+                  <div *ngIf="session_expire_time.errors?.required">
+                    El campo es requerido.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <fieldset>
+          <legend>Configuración de Contraseña</legend>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="valid_days" class="required">
+                  Tiempo de validez(días)
+                </label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="valid_days"
+                  required
+                  [(ngModel)]="model.password_settings.valid_days"
+                  name="valid_days"
+                  #valid_days="ngModel"
+                  [ngClass]="{
+                    'is-invalid': !(valid_days.valid || valid_days.pristine)
+                  }"
+                  [pattern]="numberRegex"
+                  [max]="90"
+                />
+                <div class="invalid-feedback">
+                  <div *ngIf="valid_days.errors?.max">
+                    El campo Tiempo de validez(días) no pude ser mayor que 90.
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="history_min_count" class="required">
+                  Cantidad de contraseñas en el historial
+                </label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="history_min_count"
+                  required
+                  [min]="24"
+                  [(ngModel)]="model.password_settings.history_min_count"
+                  name="history_min_count"
+                  #history_min_count="ngModel"
+                  [ngClass]="{
+                    'is-invalid': !(
+                      history_min_count.valid || history_min_count.pristine
+                    )
+                  }"
+                  [pattern]="numberRegex"
+                />
+                <div class="invalid-feedback">
+                  <div *ngIf="history_min_count?.minlength">
+                    El valor del campo no pude ser menor que 24.
+                  </div>
+                  <div *ngIf="history_min_count?.required">
+                    El campo es requerido.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="min_length" class="required">
+                  Longitud mínima
+                </label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="min_length"
+                  required
+                  [(ngModel)]="model.password_settings.min_length"
+                  name="min_length"
+                  [min]="8"
+                  #min_length="ngModel"
+                  [ngClass]="{
+                    'is-invalid': !(min_length.valid || min_length.pristine)
+                  }"
+                  [pattern]="numberRegex"
+                />
+                <div class="invalid-feedback">
+                  <div *ngIf="min_length?.minlength">
+                    El valor del campo no pude ser menor que 8.
+                  </div>
+                  <div *ngIf="min_length?.required">El campo es requerido.</div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="password_default_value"
+                  >Contraseña por defecto</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="password_default_value"
+                  [(ngModel)]="model.password_settings.password_default_value"
+                  name="password_default_value"
+                  #password_default_value="ngModel"
+                  [ngClass]="{
+                    'is-invalid': !(
+                      password_default_value.valid ||
+                      password_default_value.pristine
+                    )
+                  }"
+                />
+                <div class="invalid-feedback">
+                  <div *ngIf="password_default_value?.required">
+                    El campo es requerido.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <fieldset>
+          <legend>Configuración de autenticación</legend>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="max_attempts" class="required">
+                  Intentos fallidos máximos
+                </label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="max_attempts"
+                  required
+                  [(ngModel)]="model.lock_out_settings.max_attempts"
+                  name="max_attempts"
+                  #max_attempts="ngModel"
+                  [ngClass]="{
+                    'is-invalid': !(max_attempts.valid || max_attempts.pristine)
+                  }"
+                  [pattern]="numberRegex"
+                  [min]="1"
+                />
+                <div class="invalid-feedback">
+                  <div *ngIf="max_attempts.minlength">
+                    El valor del campo no pude ser menor que 1.
+                  </div>
+                  <div *ngIf="max_attempts.required">
+                    El campo es requerido.
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="lock_out_time" class="required">
+                  Tiempo de bloqueo para intentos fallidos
+                </label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="lock_out_time"
+                  required
+                  [(ngModel)]="model.lock_out_settings.lock_out_time"
+                  name="lock_out_time"
+                  #lock_out_time="ngModel"
+                  [ngClass]="{
+                    'is-invalid': !(
+                      lock_out_time.valid || lock_out_time.pristine
+                    )
+                  }"
+                  [pattern]="numberRegex"
+                />
+                <div class="invalid-feedback">
+                  <div *ngIf="lock_out_time.required">
+                    El campo es requerido.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="interval" class="required">
+                  Intervalo de tiempo para intentos fallidos
+                </label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="interval"
+                  required
+                  [(ngModel)]="model.lock_out_settings.interval"
+                  name="interval"
+                  #interval="ngModel"
+                  [ngClass]="{
+                    'is-invalid': !(interval.valid || interval.pristine)
+                  }"
+                  [pattern]="numberRegex"
+                />
+                <div class="invalid-feedback">
+                  <div *ngIf="interval.required">El campo es requerido.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+    </div>
+
+    <ng-fbutton
+      (save)="mySave()"
+      [showCancel]="false"
+      [showSaveNew]="false"
+      [disabled]="!(appForm.form.dirty && appForm.form.valid)"
+    ></ng-fbutton>
+  </form>
+</div>

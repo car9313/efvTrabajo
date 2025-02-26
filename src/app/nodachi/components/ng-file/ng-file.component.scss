@@ -1,0 +1,32 @@
+.custom-file-control.active {
+  &:lang(es):empty::after {
+    content: attr(data-content);
+  }
+}
+
+.custom-file-control::before {
+  background-color: #0275d8;
+  color: #fff;
+}
+
+.custom-file{
+  button.btn-danger{
+    position: absolute;
+    top: 1px;
+    height: 36px;
+    z-index: 2;
+    right: 40px;
+    border-radius: 0;
+  }
+}
+.custom-file-label{
+  border-radius: 0.75rem;
+  border-color: #3f650d;
+  &:after{
+    color: #0275d8;
+    background-color: transparent;
+  }
+}
+img{
+  border: none;
+}

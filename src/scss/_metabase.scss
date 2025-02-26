@@ -1,0 +1,33 @@
+.label-editor {
+  position: absolute;
+  top: -.5em;
+  background-color: $body-bg;
+  left: 25px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.sql-default {
+  color: $body-color;
+}
+
+.sql-keyword {
+  color: #708 !important;
+}
+
+.sql-bracket {
+  color: #997 !important;
+}
+
+.sql-string {
+  color: #a11;
+}
+
+.sql-decimal {
+  color: #164;
+}
+
+.sql-atom,
+.sql-Boolean {
+  color: #219;
+}

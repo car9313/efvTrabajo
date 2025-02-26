@@ -1,0 +1,25 @@
+@import "scss/variables";
+
+// node_modules/bootstrap;
+@import "~bootstrap/scss/bootstrap";
+
+@import 'scss/mixin';
+
+//Base-theme overrides.
+@import 'scss/overrides';
+
+//the specific
+@import "scss/banner";
+@import "scss/sidebar-menu";
+@import "scss/metabase";
+@import 'scss/content';
+@import 'scss/loader';
+@import 'scss/help-tip';
+@import 'scss/picker';
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

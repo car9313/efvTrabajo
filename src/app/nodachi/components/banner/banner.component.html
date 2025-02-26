@@ -1,0 +1,116 @@
+<div class="banner-title bg-light">
+  <div class="row no-gutters">
+    <div class="col-auto">
+      <button type="button" (click)="toggleMenu()" class="btn menu-nav">
+        <span class="fa fa-bars fa-2x"></span>
+      </button>
+    </div>
+    <div class="col-auto pr-1" *ngIf="img">
+      <img alt="modulo" src="assets/{{ img }}.png" />
+    </div>
+    <div class="col-auto">
+      <h4>{{ title }}</h4>
+      <ng-breadcrumb></ng-breadcrumb>
+    </div>
+    <div
+      class="col d-flex flex-wrap justify-content-sm-end justify-content-start align-items-center"
+    >
+      <div class="help-tip main-help" *ngIf="help != ''">
+        <p>{{ help }}</p>
+      </div>
+      <!--<a *ngIf="(workStationsSelect['province_work'] !== null && this.workStationsSelect['province_work'] !== '')"-->
+      <!--routerLink='/cuenta_digital/job' class="banner-work-satation row row-cols-2">-->
+      <!--<span class="fas fa-chalkboard-teacher left icon-job"></span>-->
+      <!--<div class="col right">-->
+      <!--<div-->
+      <!--*ngIf="(workStationsSelect['province_work'] !== null && this.workStationsSelect['province_work'] !== '')"><a-->
+      <!--class="text-green"> Prov: </a> {{workStationsSelect['province_work']}}-->
+      <!--</div>-->
+      <!--<div-->
+      <!--*ngIf="(workStationsSelect['municipality_work'] !== null && this.workStationsSelect['municipality_work'] !== '')">-->
+      <!--<a class="text-green"> Munic: </a> {{workStationsSelect['municipality_work']}}-->
+      <!--</div>-->
+      <!--</div>-->
+      <!--</a>-->
+      <!--<button type="button" class="btn btn-link text-dark" (click)="toggleTheme()" title="Cambiar colores">-->
+      <!--<span class="fa" [class.fa-moon]="!dark" [class.fa-sun]="dark"></span></button>-->
+
+      <!--<app-notifications></app-notifications>-->
+
+      <div class="dropdown">
+        <button
+          class="btn btn-light dropdown-toggle"
+          type="button"
+          id="userMenu"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+          <span class="fa fa-user user-border"></span>
+          {{ user_name }}
+        </button>
+        <div
+          class="dropdown-menu dropdown-menu-right"
+          aria-labelledby="userMenu"
+        >
+          <a class="dropdown-item" routerLink="/admin/users/change_password"
+            ><span class="fas fa-key"></span> Cambiar Contraseña</a
+          >
+          <!--<a class="dropdown-item" routerLink='/cuenta_digital/job'><span class="fas fa-chalkboard-teacher"></span>-->
+          <!--Seleccionar-->
+          <!--Puesto de trabajo</a>-->
+          <!--<a [download]="myFileName" [href]="fileUrlPDF" class="dropdown-item" ><span class="fas fa-book"></span> Manual de Usuario</a>-->
+          <button class="dropdown-item" (click)="logout()" type="button">
+            <span class="fas fa-sign-out-alt"></span>
+            Salir
+          </button>
+          <button
+            class="dropdown-item"
+            data-toggle="modal"
+            data-target="#exampleModalCenter"
+            (click)="getVersion()"
+            type="button"
+          >
+            <span class="fas fa-info-circle"></span>
+            Acerca del Sitema
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div
+  class="modal fade"
+  id="exampleModalCenter"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title banner-title" id="exampleModalLongTitle">
+          Versiones del Sistema
+        </h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Versión API:{{ versionApi }}</p>
+        <p>Versión UI:{{ versionUI }}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

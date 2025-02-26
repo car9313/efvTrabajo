@@ -1,0 +1,43 @@
+<div @fadeIn>
+  <table class="table table-bordered">
+    <tbody>
+      <tr>
+        <th>#Efv</th>
+        <td>{{model.efv}}</td>
+      </tr>
+      <tr>
+        <th>Estado</th>
+        <td>{{model.estado}}</td>
+      </tr>
+      <tr>
+        <th>Id segmento</th>
+        <td>{{model.id_segmento}}</td>
+      </tr>
+      <tr>
+        <th>Id solicitud</th>
+        <td>{{model.id_solicitud}}</td>
+      </tr>
+      <tr>
+        <th>Chk frontera</th>
+        <td>{{model.chk_frontera}}</td>
+      </tr>
+      <tr>
+        <th>Fecha Cruce</th>
+        <td>{{model.fecha_cruce}}</td>
+      </tr>
+      <tr>
+        <th>Fecha Envio Cruce</th>
+        <td>{{model.fecha_envio_cruce}}</td>
+      </tr>
+      <tr>
+        <th>Fecha Estado</th>
+        <td>{{model.fc_estado}}</td>
+      </tr>
+      <tr>
+        <th>Modalidad</th>
+        <td>{{model.modalidad}}</td>
+      </tr>
+    </tbody>
+  </table>
+  <ng-fbutton (cancel)="goList()" [showSaveNew]="false" [showSave]="false"></ng-fbutton>
+</div>

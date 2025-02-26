@@ -1,0 +1,25 @@
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { <%= class-suffix(name) %>Component } from './<%= dash-suffix(name) %>.component';
+
+describe('<%= class-suffix(name) %>Component', () => {
+  let component: <%= class-suffix(name) %>Component;
+  let fixture: ComponentFixture<<%= class-suffix(name) %>Component>;
+
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      declarations: [ <%= class-suffix(name) %>Component ]
+    })
+    .compileComponents();
+  }));
+
+  beforeEach(() => {
+    fixture = TestBed.createComponent(<%= class-suffix(name) %>Component);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});
