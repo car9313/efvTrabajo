@@ -1,0 +1,6 @@
+{
+  "serverApi": "https://localhost:5001",
+  "papyrusApi": "http://cluster-doc-web1.datys.cu:8011/papyrus",
+  "openLSServer": "http://geoidesoi.datys.cu:8080/geoserver/OpenLSServer",
+  "geoServerUrl": "http://geoidesoi.datys.cu:8080/geoserver/idesoi/ows"
+}
