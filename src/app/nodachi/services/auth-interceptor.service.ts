@@ -53,20 +53,23 @@ export class AuthInterceptor implements HttpInterceptor {
       },
       params: params,
     });
-    const errorHandler = (err: any,  restart: Observable<any>) => {
-     console.log(err);
-     if (err.status === 401) {
+    const errorHandler = (err: any, restart: Observable<any>) => {
+      console.log(err);
+      if (err.status === 418) {
+        login.logout();
+      }
+      if (err.status === 401) {
         return login.renewAccessToken().pipe(
           switchMap((renew) => {
-              if (renew) {
-                req = req.clone({
+            if (renew) {
+              req = req.clone({
                 setHeaders: {
                   Authorization: login.getAuthorizationHeader(),
                 },
               });
-                return next.handle(req).pipe(catchError(errorHandler));
+              return next.handle(req).pipe(catchError(errorHandler));
             }
-              return login.logout();
+            login.logout();
           })
         );
       } else {

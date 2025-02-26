@@ -54,28 +54,21 @@ export class LoginFormComponent implements OnInit {
       },
       (error: HttpErrorResponse) => {
         this.authenticating = false;
-        console.log(error)
+
         if (error.status === 400) {
-          console.log(error.error.errors)
-          console.log(error.error.errors.first_login)
-          if(error.error.errors.first_login){
-           console.log('change-password')
-            this.router
-              .navigate([
-                '/change-password',
-                error.headers.get('X-Change-Password-Token'),
-              ])
-              .then();
+          const headerKeys = error.headers.keys();
+          console.log('Encabezados disponibles:', headerKeys);
+          if (error.headers.has('x-change-password-token')) {
+            const token = error.headers.get('x-change-password-token');
+            console.log(token);
           }
-          /*else if (){
-            this.router
-              .navigate([
-                '/change-expired-password',
-                error.headers.get('X-Change-Password-Token'),
-              ])
-              .then();
-          }*/
-           else {
+          const token = error.headers.get('X-Change-Password-Token');
+          console.log(token);
+          if (error.error.errors.first_login && token) {
+            console.log('Token para cambiar contraseña:', token);
+            // Ejemplo: Redirigir a página de cambio de contraseña
+            this.router.navigate(['/change-password', token]).then();
+          } else {
             this.notification.verification(error);
           }
         } else {
