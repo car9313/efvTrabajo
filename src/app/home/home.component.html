@@ -1,5 +1,28 @@
 <div @fadeIn class="home-admin">
   <div class="row">
-    <h1>Home</h1>
-  </div>
-</div>
+    <div class="col-md-6 mt-4" *ngFor="let chart of chartSolicitudXEstados.graficos">
+      <div class="form-group" *ngIf="chart">
+        <h6 class="text-center">{{chartSolicitudXEstados.titulo}}&nbsp;</h6>
+        <canvas baseChart [datasets]="chart?.ejeY" [labels]="chart?.ejeX.data" [options]="chart?.chartOptions"
+                [legend]="true" [chartType]="chart?.chartType" [colors]="chartColors"></canvas>
+      </div>
+
+    </div>
+
+    <div class="col-md-6 mt-4" *ngFor="let chart of chartEfvXEstados.graficos">
+      <div class="form-group" *ngIf="chart">
+        <h6 class="text-center">{{chartEfvXEstados.titulo}}&nbsp;</h6>
+        <canvas baseChart [datasets]="chart?.ejeY" [labels]="chart?.ejeX.data" [options]="chart?.chartOptions"
+                [legend]="true" [chartType]="chart?.chartType" [colors]="chartColors"></canvas>
+      </div>
+
+    </div>
+
+    <div class="col-md-6 mt-4" *ngFor="let chart of charSegmentoXEstado.graficos">
+      <div class="form-group" *ngIf="chart">
+        <h6 class="text-center">{{charSegmentoXEstado.titulo}}&nbsp;</h6>
+        <canvas baseChart [datasets]="chart?.ejeY" [labels]="chart?.ejeX.data" [options]="chart?.chartOptions"
+                [legend]="true" [chartType]="chart?.chartType" [colors]="chartColors"></canvas>
+      </div>
+      <div class="d-flex justify-content-center">
+      </div>

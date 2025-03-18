@@ -27,18 +27,6 @@ export class HomeComponent implements OnInit {
   chartSolicitudXEstados: ChartItem;
   chartsFF: ChartItem;
   chartColors: Array<{}>;
-  /*   accessLevel: { key: string; value: string };
-  accessLevelDetails: {
-    national: boolean;
-    province: number;
-    municipality: number;
-  }; */
-  /*   reportType: string;
-  reportTypeInv: string;
- */
-  solicitudesXestadosolicitud: any;
-  solicitudesXestadoproceso: any;
-  efvXestado: any;
   headers: any;
   headersExcel: ICustomHeader[];
 
@@ -46,8 +34,7 @@ export class HomeComponent implements OnInit {
     public alertService: AlertService,
     public solicitudService: SolicitudService,
     public efvService: EfvListService,
-    /*  private alertEService: AlertEService,
-     */ private utilityService: Utility,
+    private utilityService: Utility,
     public adminService: SaicoLayoutService,
     private spin: SpinService
   ) {
@@ -56,53 +43,22 @@ export class HomeComponent implements OnInit {
       (this.chartSolicitudXEstados = {});
     this.chartColors = ReportesService.getChartColors();
 
-    /*  this.accessLevelDetails = this.utilityService.getCurrentUser();
-
-    const access = JSON.parse(localStorage.getItem('user_loggued'));
-    this.accessLevel = {
-      key: access['municipality_work_id']
-        ? 'municipio'
-        : access['province_work_id']
-        ? 'provincia'
-        : 'nacional',
-      value: access['municipality_work_id']
-        ? access['municipality_work_id']
-        : access['province_work_id']
-        ? access['province_work_id']
-        : null,
-    }; */
-    /* this.reportType = this.accessLevel.key;
-    this.reportTypeInv = this.accessLevel.key;
-     */ this.headers = {};
+      this.headers = {};
     this.headersExcel = [];
   }
   ngOnInit(): void {
     this.adminService.setTitle('Bienvenido');
     if (this.utilityService.hasPermission('Request')) {
     }
-    /* this.getSolicitudXEstadosCart();
+   this.getSolicitudXEstadosCart();
     this.getEfvXEstadosCart();
-    this.getSegmentoXEstadoCart(); */
+    this.getSegmentoXEstadoCart();
   }
 
-  /* getCantSolicitudXEstadoSolicitud() {
-    this.solicitudService.getAll().subscribe((data) => {
-      this.solicitudesXestadosolicitud = data.objects.reduce((arrayCantEstado, elemento) => {
-        const yaEnArray = arrayCantEstado.find(({ status_solicitud }) =>
-          status_solicitud === elemento.status_solicitud);
-        if (yaEnArray) {
-          yaEnArray.quantity++;
-        } else {
-          arrayCantEstado.push({ status_solicitud: elemento.status_solicitud, quantity: 1 });
-        }
-        return arrayCantEstado;
-      }, []);
-    });
-  } */
-  /* getEfvXEstadosCart() {
-    const accessLevel = this.accessLevel;
+  getEfvXEstadosCart() {
+
     this.spin.startLoading();
-    this.alertService.getRequestEfvXEstados(accessLevel).subscribe(
+    this.alertService.getRequestEfvXEstados().subscribe(
       (data) => {
         this.chartEfvXEstados = data;
         //  this.chartEfvXEstados.graficos[0].ejeY[0].backgroundColor = 'rgba(255, 99, 132, 0.2)';
@@ -115,9 +71,9 @@ export class HomeComponent implements OnInit {
     );
   }
   getSolicitudXEstadosCart() {
-    const accessLevel = this.accessLevel;
+
     this.spin.startLoading();
-    this.alertService.getRequestSolicitudXEstados(accessLevel).subscribe(
+    this.alertService.getRequestSolicitudXEstados().subscribe(
       (data) => {
         data.graficos[0].ejeY[0].backgroundColor = this.chartColors;
         this.chartSolicitudXEstados = data;
@@ -128,45 +84,13 @@ export class HomeComponent implements OnInit {
         this.spin.stopLoading();
       }
     );
-  } */
+  }
 
-  /* generateHeaders(number: number) {
-    switch (number) {
-      case 1:
-        this.headers = {
-          status_solicitud: 'Estado Solicitud',
-          quantity: 'Cantidad',
-        };
-        this.headersExcel = [
-          { name: 'status_solicitud', key: 'Estado Solicitud' },
-          { name: 'quantity', key: 'Cantidad' },
-        ];
-        break;
-      case 2:
-        this.headers = { estado: 'Estado', quantity: 'Cantidad' };
-        this.headersExcel = [
-          { name: 'estado', key: 'Estado' },
-          { name: 'quantity', key: 'Cantidad' },
-        ];
-        break;
-      case 3:
-        this.headers = {
-          status_proceso: 'Estado Proceso',
-          quantity: 'Cantidad',
-        };
-        this.headersExcel = [
-          { name: 'status_proceso', key: 'Estado Proceso' },
-          { name: 'quantity', key: 'Cantidad' },
-        ];
 
-        break;
-    }
-  } */
-
-  /* getSegmentoXEstadoCart() {
-    const accessLevel = this.accessLevel;
+   getSegmentoXEstadoCart() {
+    /*const accessLevel = this.accessLevel;*/
     this.spin.startLoading();
-    this.alertService.getRequestSegmentoXEstado(accessLevel).subscribe(
+    this.alertService.getRequestSegmentoXEstado().subscribe(
       (data) => {
         this.charSegmentoXEstado = data;
         this.spin.stopLoading();
@@ -176,5 +100,5 @@ export class HomeComponent implements OnInit {
         this.spin.stopLoading();
       }
     );
-  } */
+  }
 }

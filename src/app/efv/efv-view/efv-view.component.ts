@@ -3,9 +3,6 @@ import { animations, IComponentView } from '@app/nodachi';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Efv } from '@app/efv/efv';
 import { EfvListService } from '@app/efv/efv-list.service';
-import { Efv1 } from '@app/efv/efv1';
-import { EMPTY, Observable, throwError as observableThrowError } from 'rxjs';
-import { catchError, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-efv-view',
@@ -14,13 +11,13 @@ import { catchError, tap } from 'rxjs/operators';
   encapsulation: ViewEncapsulation.None,
   animations: animations,
 })
-export class EfvViewComponent extends IComponentView<Efv1>  {
+export class EfvViewComponent extends IComponentView<Efv>  {
   public efv: string;
   public comments: any[];
   public show_score: boolean;
 
   constructor(protected efvServices: EfvListService, public router: Router, public route: ActivatedRoute) {
-    super(efvServices, route, router, 'Efv', new Efv1());
+    super(efvServices, route, router, 'Efv', new Efv());
     /* this.route.paramMap.subscribe((params) => {
        this.efv = params.get('id');
        this.search(true);

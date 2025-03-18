@@ -1,3 +1,4 @@
+/*
 export class Efv1 {
   constructor(
     public efv: string = '',
@@ -14,3 +15,4 @@ export class Efv1 {
     public entidad: string = ''
   ) {}
 }
+*/

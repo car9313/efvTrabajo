@@ -2,7 +2,7 @@ import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
-import {Efv1} from '@app/efv/efv1';
+
 import {EfvListService} from '@app/efv/efv-list.service';
 
 export interface Prueba {
