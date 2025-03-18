@@ -88,33 +88,54 @@ export class LoginService {
   }
 
   logout(): Observable<boolean> {
+
+  console.log('Entro Logout')
     SignalRService.disconnect();
+  const prueba= localStorage.getItem('refresh_token');
     return this.http
       .post(this.config.url() + '/api/v1/users/logout', {
-        refresh_token: localStorage.getItem('refresh_token'),
+        refresh_token: prueba,
       })
       .pipe(
+        catchError(() => {
+
+          console.log('Error al hacer logout')
+          return of({});
+        }),
         map(() => {
+
+          console.log('Peticion exitosa Logout')
           this.tokenStorageService.clearLocalStorage();
           window.location.href = '/login';
           return false;
         })
+
       );
   }
 
   renewAccessToken(): Observable<boolean> {
+
+   console.log('Renovando el token')
     const refreshToken = localStorage.getItem('refresh_token');
+    console.log(refreshToken)
     if (!refreshToken) {
+      console.log('No hay refresh token el el local storage')
       return of(false);
     }
     // si no es la primera solicitud al token renew
     if (LoginService.renewRequested) {
+      console.log('renewRequested',LoginService.renewRequested)
+      console.log(' Hay refresh token el el local storage')
       return new Observable<boolean>((observer) => {
         LoginService.observers.push(observer);
       });
     }
     // si es la primera solicitud al token renew
     LoginService.renewRequested = true;
+
+    console.log('renewRequested',LoginService.renewRequested)
+
+
     const httpParams = this.getHttpParamsRenewToken(refreshToken);
     return this.http
       .post<AuthResponseBody>(this.refreshUrl, httpParams, {
@@ -124,21 +145,33 @@ export class LoginService {
       })
       .pipe(
         catchError(() => {
+          console.log('renewRequested',LoginService.renewRequested)
+          console.log('Error en la peticion de refrescar el token')
           return of({});
         }),
         map((res: AuthHttpResponse) => {
+          LoginService.renewRequested = false;
+
+          console.log('renewRequested',LoginService.renewRequested)
+          console.log('Body',res.body)
+          console.log('OK en la peticion de refrescar el token')
+
           if (res.body) {
             this.tokenStorageService.setLocalStorage(res.body);
+            console.log('LocalStorage',res.body)
+            console.log('renewRequested',LoginService.renewRequested)
             return true;
           }
           return false;
         }),
         map((renew: boolean) => {
+          console.log(' resolver todos los demas observers a la espera')
           // resolver todos los demas observers a la espera
           while (LoginService.observers.length > 0) {
             const observer = LoginService.observers.shift();
             observer.next(renew);
           }
+          console.log('renew',renew)
           return renew;
         }),
         finalize(() => {

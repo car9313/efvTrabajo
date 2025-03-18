@@ -54,10 +54,10 @@ export class LoginFormComponent implements OnInit {
       },
       (error: HttpErrorResponse) => {
         this.authenticating = false;
-
+        console.log(error)
         if (error.status === 400) {
           // Ejemplo: Redirigir a página de cambio de contraseña
-          if (error.error.errors.first_login) {
+          if (error.error.errors.first_login || error.error.errors.admin_reset || error.error.errors.expired_password) {
             const token = error.headers.get('X-Change-Password-Token');
             this.router.navigate(['/change-password', token]).then();
           } else {

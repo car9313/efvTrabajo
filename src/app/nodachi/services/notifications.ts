@@ -16,6 +16,7 @@ export class Notifications {
   ) {}
 
   verification(res) {
+    console.log(res)
     switch (res.status) {
       case 201:
         this.success(
@@ -34,9 +35,10 @@ export class Notifications {
         break;
       case 401:
         let msj = 'No tiene acceso a esta funcionalidad.';
-        if (res.error) {
+        /*if (res.error) {
+         console.log(res.error);
           msj = res.error.error_description;
-        }
+        }*/
         this.error('<span class="fas fa-exclamation-triangle"></span>' + msj);
         break;
       case 0:

@@ -14,8 +14,6 @@ export class RoleService extends CoreService {
   }
 
   createPermissions(permisos: any[]): Observable<any> {
-    console.log(permisos);
-    debugger;
     return this.httpClient
       .put(this.url() + '/permissions', JSON.stringify(
         permisos

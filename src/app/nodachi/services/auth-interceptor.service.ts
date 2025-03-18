@@ -55,10 +55,16 @@ export class AuthInterceptor implements HttpInterceptor {
     });
     const errorHandler = (err: any, restart: Observable<any>) => {
       console.log(err);
+
       if (err.status === 418) {
         login.logout();
       }
       if (err.status === 401) {
+        console.log(err.status)
+        console.log(req.url)
+        if(req.url.includes('/change_password')){
+          return observableThrowError(err);
+        }
         return login.renewAccessToken().pipe(
           switchMap((renew) => {
             if (renew) {
@@ -69,6 +75,7 @@ export class AuthInterceptor implements HttpInterceptor {
               });
               return next.handle(req).pipe(catchError(errorHandler));
             }
+            // hay que analizar que sucede si el logout da error
             login.logout();
           })
         );

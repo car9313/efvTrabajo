@@ -36,15 +36,24 @@ export class ChangePasswordComponent implements OnInit {
   }
 
   save() {
+
     this.model.token = this.route.snapshot.paramMap.get('token');
     this.userService.changePassword(this.model).subscribe((resp) => {
       this.notification.verification(resp);
       this.router.navigate(['/login']).then();
-    }, (error1: HttpErrorResponse) => {
-      if (error1.status === 400 && error1.error.ModelState.hasOwnProperty('token')) {
+    }, (error: HttpErrorResponse) => {
+     console.log(error)
+      /*if (error.status === 400 && error.error.ModelState.hasOwnProperty('token')) {
         this.router.navigate(['/login']).then();
       } else {
-        this.notification.verification(error1);
+        this.notification.verification(error);
+      }*/
+      if(error.status === 400){
+        this.notification.verification(error);
+      }
+      else if(error.status===401){
+        this.notification.verification(error);
+         this.router.navigate(['/login']).then();
       }
     });
   }

@@ -90,6 +90,7 @@ export class UserService extends CoreService {
   }
 
   changePassword(data): Observable<any> {
+    console.log(data)
     return this.httpClient.post(`${this.url()}/change_password`, data, {
       observe: 'response',
       headers: {
@@ -98,7 +99,7 @@ export class UserService extends CoreService {
         'X-XSS-Protection': '1;mode=block',
         'X-Content-Type-Options': 'nosniff'
       },
-    });
+    })
   }
 
   resetPassword(id: any) {
