@@ -42,16 +42,16 @@ export class EfvListComponent extends IComponentList implements OnInit {
       estado: 'Estado',
       id_segmento: 'Id segmento',
       id_solicitud: 'Id Solicitud',
-      tipo_visa: 'Tipo Visa',
-      entidad: 'Entidad',
+     /* tipo_visa: 'Tipo Visa',
+      entidad: 'Entidad',*/
     };
     this.headersExcel = [
       { name: 'numero_fv', key: 'Numero Efv' },
       { name: 'estado_fv', key: 'Estado Efv' },
       { name: 'id_segmento', key: 'Id Segmento' },
       { name: 'id_solicitud', key: 'Id Solicitud' },
-      { name: 'tipo_visa', key: 'Tipo Visa' },
-      { name: 'entidad', key: 'Entidad' },
+   /*   { name: 'tipo_visa', key: 'Tipo Visa' },
+      { name: 'entidad', key: 'Entidad' },*/
       { name: 'modalidad', key: 'Modalidad' },
       { name: 'eticket_id', key: 'Eticket Id' },
       { name: 'chk_frontera', key: 'Chk Frontera' },

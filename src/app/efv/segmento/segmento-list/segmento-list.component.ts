@@ -26,13 +26,13 @@ export class SegmentoListComponent extends IComponentList implements OnInit {
   ];
   @IsFilter() public actionEstadoFilter: string;
 
-  public tiposVisachoosenOpts: NgChoosenOpts;
+ /* public tiposVisachoosenOpts: NgChoosenOpts;
   public tiposVisa: any;
-  @IsFilter() public actionTiposVisaFilter: string;
+  @IsFilter() public actionTiposVisaFilter: string;*/
 
-  public entidadeschoosenOpts: NgChoosenOpts;
+ /* public entidadeschoosenOpts: NgChoosenOpts;
   public entidades: any;
-  @IsFilter() public actionEntidadesFilter: string;
+  @IsFilter() public actionEntidadesFilter: string;*/
 
   constructor(
     protected segmetoServices: SegmentoService,
@@ -78,7 +78,7 @@ export class SegmentoListComponent extends IComponentList implements OnInit {
     ];
     this.redirectToAdd = false;
 
-    this.tiposVisachoosenOpts = {
+  /*  this.tiposVisachoosenOpts = {
       textField: 'description',
       valueField: 'code',
       placeHolder: 'Tipos de Visa',
@@ -87,7 +87,7 @@ export class SegmentoListComponent extends IComponentList implements OnInit {
       textField: 'name',
       valueField: 'description',
       placeHolder: 'Entidades',
-    };
+    };*/
   }
 
   ngOnInit() {
@@ -96,11 +96,11 @@ export class SegmentoListComponent extends IComponentList implements OnInit {
     this.permissions.update = false;
     this.permissions.create = false;
     this.permissions.read = false;
-    this.listTipoVisa();
-    this.listEntidades();
+   /* this.listTipoVisa();
+    this.listEntidades();*/
   }
 
-  listTipoVisa(): void {
+ /* listTipoVisa(): void {
     this.solicitudService.getTipoVisaSolicitudes().subscribe((res) => {
       console.log(res);
       this.tiposVisa = res;
@@ -111,14 +111,14 @@ export class SegmentoListComponent extends IComponentList implements OnInit {
       console.log(res);
       this.entidades = res;
     });
-  }
+  }*/
   preSearch() {
     this.searchParams.other_params = {
       id_solicitud: this.id_solicitud,
       id_segmento: this.id_segmento,
       estado: this.actionEstadoFilter,
-      tipovisa: this.actionTiposVisaFilter,
-      entidad: this.actionEntidadesFilter,
+    /*  tipovisa: this.actionTiposVisaFilter,
+      entidad: this.actionEntidadesFilter,*/
     };
   }
   view(object: any): void {

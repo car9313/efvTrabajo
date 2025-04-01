@@ -17,14 +17,14 @@ import { ToolbarComponent } from '@app/efv/toolbar/toolbar.component';
 import { EfvSearchComponent } from './efv-search/efv-search.component';
 
 const APP_ROUTES: Routes = [
-  {
+  /*{
     path: 'list',
     component: EfvListComponent,
     data: [
       {},
       { breadcrumb: 'Formas valiosas', navigation: 'Formas valiosas' },
     ],
-  },
+  },*/
   {
     path: 'efv_buscar',
     component: EfvSearchComponent,
@@ -34,7 +34,7 @@ const APP_ROUTES: Routes = [
     ],
   },
   {
-    path: 'efv_buscar/solicitud/:id_solicitud/:id',
+    path: 'efv_buscar/:id',
     component: EfvViewComponent,
     data: [{}, { breadcrumb: 'Detalles', navigation: 'Efv' }],
   },
@@ -54,19 +54,9 @@ const APP_ROUTES: Routes = [
       { breadcrumb: 'Buscar eFV', navigation: 'Buscar Formas Valiosas' },
     ],
   },
+
   {
-    path: 'efv_generar',
-    component: EfvGenerarComponent,
-    data: [
-      {},
-      {
-        breadcrumb: 'Generar Formas Valiosas',
-        navigation: 'Generar Formas Valiosas',
-      },
-    ],
-  },
-  {
-    //solicitud/1/fsfggerg
+
     path: 'view/:id',
     component: EfvViewComponent,
     data: [{}, { breadcrumb: 'Detalles', navigation: 'Efv' }],

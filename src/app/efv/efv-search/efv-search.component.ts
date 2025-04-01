@@ -24,13 +24,13 @@ export class EfvSearchComponent extends IComponentList implements OnInit {
   @IsFilter() public id_solicitud: string;
   @IsFilter() public efv: string;
 
-  public tiposVisachoosenOpts: NgChoosenOpts;
+ /* public tiposVisachoosenOpts: NgChoosenOpts;
   public tiposVisa: any;
   @IsFilter() public actionTiposVisaFilter: string;
 
   public entidadeschoosenOpts: NgChoosenOpts;
   public entidades: any;
-  @IsFilter() public actionEntidadesFilter: string;
+  @IsFilter() public actionEntidadesFilter: string;*/
 
   constructor(
     private efvListService: EfvListService,
@@ -69,7 +69,7 @@ export class EfvSearchComponent extends IComponentList implements OnInit {
       valueField: 'key',
       placeHolder: 'Estados',
     };
-    this.tiposVisachoosenOpts = {
+ /*   this.tiposVisachoosenOpts = {
       textField: 'description',
       valueField: 'code',
       placeHolder: 'Tipos de Visa',
@@ -78,7 +78,7 @@ export class EfvSearchComponent extends IComponentList implements OnInit {
       textField: 'name',
       valueField: 'description',
       placeHolder: 'Entidades',
-    };
+    };*/
   }
 
   ngOnInit() {
@@ -96,15 +96,15 @@ export class EfvSearchComponent extends IComponentList implements OnInit {
       // Access the 'id' parameter from the URL
     });
     this.listEstados();
-    this.listTipoVisa();
-    this.listEntidades();
+    /*this.listTipoVisa();
+    this.listEntidades();*/
   }
   listEstados(): void {
     this.efvListService.getEstados().subscribe((res) => {
       this.estados = res;
     });
   }
-  listTipoVisa(): void {
+/*  listTipoVisa(): void {
     this.solicitudService.getTipoVisaSolicitudes().subscribe((res) => {
       console.log(res);
       this.tiposVisa = res;
@@ -115,15 +115,15 @@ export class EfvSearchComponent extends IComponentList implements OnInit {
       console.log(res);
       this.entidades = res;
     });
-  }
+  }*/
   preSearch() {
     this.searchParams.other_params = {
       efv: this.efv,
       estado_efv: this.actionEstadoFilter,
       id_segmento: this.id_segmento,
       id_solicitud: this.id_solicitud,
-      tipovisa: this.actionTiposVisaFilter,
-      entidad: this.actionEntidadesFilter,
+     /* tipovisa: this.actionTiposVisaFilter,
+      entidad: this.actionEntidadesFilter,*/
     };
   }
 
@@ -185,7 +185,7 @@ export class EfvSearchComponent extends IComponentList implements OnInit {
   }
   view(object: any): void {
     const id = object.numero_fv;
-    const viewUrl: string = `/efv/efv_buscar/solicitud/${this.id_solicitud}/${id}`;
+    const viewUrl: string = `/efv/efv_buscar/${id}`;
     this.router.navigateByUrl(viewUrl).then();
   }
 }

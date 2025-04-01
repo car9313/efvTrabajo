@@ -37,14 +37,14 @@ export class SolicitudesListComponent extends IComponentList implements OnInit {
   ];
   @IsFilter() public actionEstadoFilter: string;
 
-  public tiposVisachoosenOpts: NgChoosenOpts;
+/*  public tiposVisachoosenOpts: NgChoosenOpts;
   public tiposVisa: any;
-  @IsFilter() public actionTiposVisaFilter: string;
+  @IsFilter() public actionTiposVisaFilter: string;*/
 
-  public entidadeschoosenOpts: NgChoosenOpts;
+ /* public entidadeschoosenOpts: NgChoosenOpts;
   public entidades: any;
   @IsFilter() public actionEntidadesFilter: string;
-
+*/
   public isDisableButtonProcesarPendiente: boolean;
   public isDisableButtonRestaurarSolicitud: boolean;
   constructor(
@@ -70,24 +70,24 @@ export class SolicitudesListComponent extends IComponentList implements OnInit {
       { name: 'cantidad', key: 'Cantidad' },
       { name: 'fecha_solicitud', key: 'Fecha Solicitud' },
       { name: 'status_solicitud', key: 'Estado Solicitud' },
-      { name: 'tipo_visa', key: 'Tipo Visa' },
-      { name: 'entidad', key: 'Entidad' },
+     /* { name: 'tipo_visa', key: 'Tipo Visa' },
+      { name: 'entidad', key: 'Entidad' },*/
     ];
     this.estadoschoosenOpts = {
       textField: 'value',
       valueField: 'key',
       placeHolder: 'Estados',
     };
-    this.tiposVisachoosenOpts = {
+   /* this.tiposVisachoosenOpts = {
       textField: 'description',
       valueField: 'code',
       placeHolder: 'Tipos de Visa',
-    };
-    this.entidadeschoosenOpts = {
+    };*/
+   /* this.entidadeschoosenOpts = {
       textField: 'name',
       valueField: 'description',
       placeHolder: 'Entidades',
-    };
+    };*/
     this.isDisableButtonProcesarPendiente = true;
     this.isDisableButtonRestaurarSolicitud = true;
 
@@ -120,19 +120,19 @@ export class SolicitudesListComponent extends IComponentList implements OnInit {
       .subscribe((res) => {
         this.isDisableButtonRestaurarSolicitud = res;
       });
-    this.listTipoVisa();
-    this.listEntidades();
+  /*  this.listTipoVisa();
+    this.listEntidades();*/
   }
-  listTipoVisa(): void {
+/*  listTipoVisa(): void {
     this.solicitudService.getTipoVisaSolicitudes().subscribe((res) => {
       this.tiposVisa = res;
     });
-  }
-  listEntidades(): void {
+  }*/
+  /*listEntidades(): void {
     this.solicitudService.getEntidades().subscribe((res) => {
       this.entidades = res;
     });
-  }
+  }*/
 
   preSearch() {
     this.searchParams.other_params = {
@@ -140,8 +140,8 @@ export class SolicitudesListComponent extends IComponentList implements OnInit {
       fechahasta: this.fechaFinFilter ? this.fechaFinFilter : null,
       id_solicitud: this.id_solicitud,
       estado: this.actionEstadoFilter,
-      tipovisa: this.actionTiposVisaFilter,
-      entidad: this.actionEntidadesFilter,
+      /*tipovisa: this.actionTiposVisaFilter,
+      entidad: this.actionEntidadesFilter,*/
     };
   }
 

@@ -1,9 +1,10 @@
+
 <div @fadeIn>
   <table class="table table-bordered">
     <tbody>
       <tr>
         <th>#Efv</th>
-        <td>{{model.efv}}</td>
+        <td>{{model.numero_fv}}</td>
       </tr>
       <tr>
         <th>Estado</th>
@@ -16,6 +17,10 @@
       <tr>
         <th>Id solicitud</th>
         <td>{{model.id_solicitud}}</td>
+      </tr>
+      <tr>
+        <th>Eticket</th>
+        <td>{{model.eticket_id}}</td>
       </tr>
       <tr>
         <th>Chk frontera</th>
@@ -37,6 +42,15 @@
         <th>Modalidad</th>
         <td>{{model.modalidad}}</td>
       </tr>
+<!--
+      <tr>
+        <th>Tipo Visa</th>
+        <td>{{model.tipo_visa}}</td>
+      </tr>
+      <tr>
+        <th>Modalidad</th>
+        <td>{{model.entidad}}</td>
+      </tr>-->
     </tbody>
   </table>
   <ng-fbutton (cancel)="goList()" [showSaveNew]="false" [showSave]="false"></ng-fbutton>

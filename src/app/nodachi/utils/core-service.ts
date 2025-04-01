@@ -177,6 +177,8 @@ export class CoreService {
   getById(id: any): Observable<any>;
   getById<T>(id: any): Observable<T>;
   getById(id: any): Observable<any> {
+   console.log(id)
+    console.log(`${this.url()}/${id}`)
     return this.httpClient
       .get<any>(`${this.url()}/${id}`)
       .pipe(catchError(CoreService.handleError));
