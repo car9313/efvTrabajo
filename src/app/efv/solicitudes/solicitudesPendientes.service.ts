@@ -13,6 +13,7 @@ export class SolicitudesPendientesService extends CoreService {
   }
 
   pendiente(): Observable<any> {
+    console.log(this.url())
     return this.httpClient.post(`${this.url()}/pendiente`, {
       /*observe: 'response',*/
       headers: {

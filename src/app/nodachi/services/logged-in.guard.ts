@@ -18,7 +18,6 @@ export class LoggedInGuard implements CanActivate, CanActivateChild {
     private router: Router,
     private utilityService: Utility
   ) {
-    console.log('LoginGuard');
   }
 
   canActivate(
@@ -27,7 +26,6 @@ export class LoggedInGuard implements CanActivate, CanActivateChild {
   ): Observable<boolean> {
     const auth_route = route.data[0];
     const url: string = state.url;
-    console.log(route.data[0]);
     return this.checkLogin(url, auth_route);
   }
 

@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { IsFilter } from '@app/nodachi/decorators/is-filter.decorator';
 import { SolicitudService } from '@app/efv/solicitudes/solicitud.service';
 import { Solicitud } from '../solicitud';
+import {HttpErrorResponse} from "@angular/common/http";
 
 @Component({
   selector: 'app-solicitudes-list',
@@ -53,17 +54,14 @@ export class SolicitudesListComponent extends IComponentList implements OnInit {
     public router: Router
   ) {
     super(solicitudService, 'Solicitud', 'Solicitudes', router);
-    //this.estadosProcesoFilter = null;
-    //this.estadosSolicitudFilter = null;
     this.headers = {
       id_solicitud: 'Id Solicitud',
       fecha_solicitud: 'Fecha solicitud',
-      // usuario: 'Usuario',
-      status_solicitud: 'Estado solicitud',
+      estado_solicitd : 'Estado solicitud',
       cantidad: 'Cantidad',
       tipo_visa: 'Tipo Visa',
       entidad: 'Entidad',
-      // status_proceso: 'Estado Proceso'
+
     };
     this.headersExcel = [
       { name: 'id_solicitud', key: 'Id Solicitud' },
@@ -88,8 +86,8 @@ export class SolicitudesListComponent extends IComponentList implements OnInit {
       valueField: 'description',
       placeHolder: 'Entidades',
     };*/
-    this.isDisableButtonProcesarPendiente = true;
-    this.isDisableButtonRestaurarSolicitud = true;
+    this.isDisableButtonProcesarPendiente = false;
+    this.isDisableButtonRestaurarSolicitud = false;
 
     this.extraHeaders = [
       {
@@ -97,7 +95,7 @@ export class SolicitudesListComponent extends IComponentList implements OnInit {
         tooltip: 'Buscar eFV',
         icon: 'fa fa-search',
         condition: (request: any) => {
-          return request.status_solicitud == 'NUEVA' ? false : true;
+          return request.status_solicitud === 'NUEVA' ? false : true;
         },
         url: ['', '/efv/efv_buscar/solicitud/', '${id_solicitud}'],
         //class: 'btn btn-primary',
@@ -107,17 +105,22 @@ export class SolicitudesListComponent extends IComponentList implements OnInit {
   }
 
   ngOnInit() {
+   console.log(
+     this.objects
+   )
     super.ngOnInit();
     this.permissions.delete = false;
     this.permissions.update = false;
     this.permissions.create = false;
     this.permissions.read = false;
     this.solicitudService.getCantExecuteProcesarPendiente().subscribe((res) => {
+      console.log(res)
       this.isDisableButtonProcesarPendiente = res;
     });
     this.solicitudService
       .getCantExecuteRestaurarSolicitud()
       .subscribe((res) => {
+        console.log(res)
         this.isDisableButtonRestaurarSolicitud = res;
       });
   /*  this.listTipoVisa();
@@ -146,68 +149,72 @@ export class SolicitudesListComponent extends IComponentList implements OnInit {
   }
 
   procesar() {
-    this.isDisableButtonProcesarPendiente = false;
-    this.solicitudesPendientes.pendiente().subscribe((res) => {
-      if (res != null) {
-        this.spin.stopLoading();
-        this.notification.error(res);
-        this.solicitudService
-          .getCantExecuteProcesarPendiente()
-          .subscribe((res) => {
-            this.isDisableButtonProcesarPendiente = res;
-          });
-        this.solicitudService
-          .getCantExecuteRestaurarSolicitud()
-          .subscribe((res) => {
-            this.isDisableButtonRestaurarSolicitud = res;
-          });
-      } else {
-        this.spin.stopLoading();
+    this.solicitudesPendientes.pendiente().subscribe(
+      (res) => {
+        console.log(res)
         this.notification.success('La solicitud fue procesada correctamete');
+        this.spin.stopLoading()
+
         this.solicitudService
           .getCantExecuteProcesarPendiente()
-          .subscribe((res) => {
-            this.isDisableButtonProcesarPendiente = res;
+          .subscribe((response) => {
+            console.log(response)
+            this.isDisableButtonProcesarPendiente = response;
           });
         this.solicitudService
           .getCantExecuteRestaurarSolicitud()
-          .subscribe((res) => {
-            this.isDisableButtonRestaurarSolicitud = res;
+          .subscribe((response) => {
+            console.log(response)
+            this.isDisableButtonRestaurarSolicitud = response;
           });
-      }
-    });
+    },
+    (error: HttpErrorResponse) => {
+        console.log(error)
+      this.solicitudService
+        .getCantExecuteProcesarPendiente()
+        .subscribe((response) => {
+          this.isDisableButtonProcesarPendiente = response;
+        });
+      this.solicitudService
+        .getCantExecuteRestaurarSolicitud()
+        .subscribe((response) => {
+          this.isDisableButtonRestaurarSolicitud = response;
+        });
+      this.notification.verification(error);
+    }
+    );
   }
   restaurar() {
-    this.isDisableButtonRestaurarSolicitud = false;
-    this.solicitudService.restaurarSolicitudError().subscribe((res) => {
-      if (res != null) {
-        this.spin.stopLoading();
-        this.notification.error(res);
-        this.solicitudService
-          .getCantExecuteProcesarPendiente()
-          .subscribe((res) => {
-            this.isDisableButtonProcesarPendiente = res;
-          });
-        this.solicitudService
-          .getCantExecuteRestaurarSolicitud()
-          .subscribe((res) => {
-            this.isDisableButtonRestaurarSolicitud = res;
-          });
-      } else {
-        this.spin.stopLoading();
+    this.solicitudService.restaurarSolicitudError().subscribe(
+      (res) => {
         this.notification.success('La solicitud fue restaurada correctamete');
+        this.spin.stopLoading();
         this.solicitudService
           .getCantExecuteProcesarPendiente()
-          .subscribe((res) => {
-            this.isDisableButtonProcesarPendiente = res;
+          .subscribe((response) => {
+            this.isDisableButtonProcesarPendiente = response;
           });
         this.solicitudService
           .getCantExecuteRestaurarSolicitud()
-          .subscribe((res) => {
-            this.isDisableButtonRestaurarSolicitud = res;
+          .subscribe((response) => {
+            this.isDisableButtonRestaurarSolicitud = response;
           });
+    },
+      (error: HttpErrorResponse) => {
+        console.log(error)
+        this.solicitudService
+          .getCantExecuteProcesarPendiente()
+          .subscribe((response) => {
+            this.isDisableButtonProcesarPendiente = response;
+          });
+        this.solicitudService
+          .getCantExecuteRestaurarSolicitud()
+          .subscribe((response) => {
+            this.isDisableButtonRestaurarSolicitud = response;
+          });
+        this.notification.verification(error);
       }
-    });
+    );
   }
 
   view(object: any): void {
